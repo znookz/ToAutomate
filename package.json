@@ -2,9 +2,9 @@
   "name": "toautomate",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "app/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register  'app/Main.js' "
   },
   "author": "",
   "license": "ISC",
