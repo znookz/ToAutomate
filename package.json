@@ -4,7 +4,8 @@
   "description": "",
   "main": "app/main.js",
   "scripts": {
-    "test": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=Report,reportFilename=Main-Report 'app/Main.js' "
+    "test": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=Report,reportFilename=Main-Report 'app/Main.js' ",
+    "CreateC2C": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=Report,reportFilename=CreateC2C-Report 'app/Scripts/CreateC2C.js' "
   },
   "author": "",
   "license": "ISC",

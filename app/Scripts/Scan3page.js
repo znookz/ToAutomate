@@ -6,6 +6,7 @@ const should = require('chai').should();
 const modulMain = require('../Module/ModulMain.js');
 const moduleScan = require('../Module/ModulScan.js');
 
+run();
 
 async function run() {
 
@@ -18,7 +19,7 @@ async function run() {
         });
 
         const dtScan = [
-            "LPW02A0122052700019TG", "LPW02A0122052700020TG"
+            "LPW02A0122052700044TG", "LPW02A0122052700045TG"
         ]
 
         it('scanLoadDc', async function () {

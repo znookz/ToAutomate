@@ -1,0 +1,1 @@
+npm run CreateC2C

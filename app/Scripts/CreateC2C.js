@@ -4,6 +4,7 @@ const should = require('chai').should();
 const modulMain = require('../Module/ModulMain.js');
 const moduleC2C = require('../Module/ModulC2C.js');
 
+run();
 
 async function run() {
     describe('Create C2C', async function () {
