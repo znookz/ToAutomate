@@ -4,7 +4,7 @@
   "description": "",
   "main": "app/main.js",
   "scripts": {
-    "test": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register  'app/Main.js' "
+    "test": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=tp_test-report,reportFilename=ScanTEST 'app/Main.js'"
   },
   "author": "",
   "license": "ISC",
