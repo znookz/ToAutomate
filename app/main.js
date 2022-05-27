@@ -1,81 +1,93 @@
-
-const { Builder, By, Key } = require("selenium-webdriver")
+const { Builder, By, Key, until } = require("selenium-webdriver")
 require("chromedriver");
-var should = require('chai').should();
+const should = require('chai').should();
+const modulMain = require('./Module/ModulMain.js');
+const moduleScan = require('./Module/ModulScan.js');
+const moduleC2C = require('./Module/ModulC2C.js');
+// const dataConstant = require("../dataConstant.js")
 
-//desctible
-describe("add todo test", function () {
+//////////////
 
-    //it block
-    it("Successfully adds a todo o application", async function () {
+fn_CreateC2C();
+//fn_Scan();
 
-        //open browser
-        let driver = await new Builder().forBrowser("chrome").build();
-
-
-        //navigate to our browser
-        await driver.get("https://lambdatest.github.io/sample-todo-app/")
-
-        //add a todo
-        await driver.findElement(By.id("sampletodotext")).sendKeys("Learn Selenium", Key.RETURN);
-
-        //assert
-        let todoText = await driver.findElement(By.xpath("//li[last()]")).getText().then(function (value) {
-            return value
-        })
-
-        //assert using chai should
-        todoText.should.equal("Learn Selenium");
+///////
 
 
-        //close browser
-        await driver.quit();
+async function fn_CreateC2C() {
+    describe('Create C2C', async function () {
+        var driver = new Builder().forBrowser("chrome").build();
+        driver.manage().window().maximize();
 
+        it('LoginPage', async function () {
+            await modulMain.loginBrowser(driver);
+        });
+
+        it('Create C2C', async function () {
+
+            const dtAddJOb = [
+                { name: "selenium 1", tel: "888888", address: "88/88", province: "เชียงราย", district: "แม่สาย", subDistrict: "เวียงพางคำ" },
+                // { name: "selenium 2", tel: "888888", address: "88/88", province: "เชียงราย", district: "แม่สาย", subDistrict: "เวียงพางคำ" },
+            ];
+
+            const dtAddParcel = [
+                { type: "ตู้เย็น", name: "10Q", amount: "1", unit: "ตู้" },
+                { type: "ตู้เย็น", name: "10Q", amount: "1", unit: "ตู้" }
+            ];
+
+            await moduleC2C.CreateC2C(driver, dtAddJOb, dtAddParcel);
+        });
+
+        it('Close', async function () {
+            await modulMain.CloseBrowser(driver);
+        });
 
     });
+}
 
-});
+async function fn_Scan() {
+    describe('Open Scan', async function () {
+        var driver = new Builder().forBrowser("chrome").build();
+        driver.manage().window().maximize();
 
+        it('LoginPage', async function () {
+            await modulMain.loginBrowser(driver);
+        });
 
+        const dtScan = [
+            "LPW02A0122052700019TG", "LPW02A0122052700020TG"
+        ]
 
+        it('scanLoadDc', async function () {
+            const dtSet = { dc: "สำนักงานใหญ่" }
+            await moduleScan.scanLoadDc(driver, dtScan, dtSet);
+        });
 
+        it('scanLoadOutDc', async function () {
+            const dtSet = { dc: "สำนักงานใหญ่" }
+            await moduleScan.scanLoadOutDc(driver, dtScan, dtSet);
+        });
 
-
-
-
-
-
-
-
-///////////////////////////////////////////////////////////
-
-
-// async function example() {
-
-//     //open browser
-//     let driver = await new Builder().forBrowser("chrome").build();
-
-
-//     //navigate to our browser
-//     await driver.get("https://lambdatest.github.io/sample-todo-app/")
-
-//     //add a todo
-//     await driver.findElement(By.id("sampletodotext")).sendKeys("Learn Selenium", Key.RETURN);
-
-//     //assert
-//     let todoText = await driver.findElement(By.xpath("//li[last()]")).getText().then(function (value) {
-//         return value
-//     })
-
-//     //assert using node assertion
-//     assert.strictEqual(todoText, "Learn Selenium");
-
-//     //assert using chai should
-//     todoText.should.equal("Learn Selenium");
+        it('scanLoadDcLastMile', async function () {
+            const dtSet = {
+                dc: "สำนักงานใหญ่",
+                SubRoutelastmail: "ภาคเหนือ"
+            }
+            await moduleScan.scanLoadDcLastMile(driver, dtScan, dtSet);
+        });
 
 
-//     //close browser
-//     await driver.quit();
+        it('Close', async function () {
+            await modulMain.CloseBrowser(driver);
+        });
+
+    });
+}
 
 
-// }
+
+
+module.exports = {
+    fn_CreateC2C, fn_Scan
+}
+
