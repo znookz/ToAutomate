@@ -18,10 +18,7 @@ async function GetTag(driver, dtScan, dtSet) {
     // await driver.sleep(2000);
 
     //ติ๊กเลือก อันแรก
-    // await driver.findElement(By.xpath(`//order-manage-table-list-new-v2/div/div/div/div/table/tbody[@id="tbodyrow-0"]/tr/td/div/input`)).click();
-    // await driver.wait(until.elementLocated(By.xpath(`//order-manage-table-list-new-v2/div/div/div/div/table/tbody[@id="tbodyrow-0"]/tr/td/div/input`)), 10000).click();
-    // await driver.findElement(By.id(`grd1-0`));
-    // await driver.wait(until.elementLocated(By.id(`grd1-0`)), 10000).click();
+
     await driver.wait(until.elementIsVisible(driver.findElement(By.id(`grd1-0`))), 5000).click();
     await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//button[@ng-click="PrintTrackingNo()"]`))), 5000).click();
 
