@@ -1,7 +1,7 @@
 
 const isplay = "DEV"
-const apidev = "http://localhost:8086/#/";
-// const apidev = "http://147.50.152.152:1150/tms-dev/WEB-TMS/#/";
+// const apidev = "http://localhost:8086/#/";
+const apidev = "http://147.50.152.152:1150/tms-dev/WEB-TMS/#/";
 
 const apiprod = "http://147.50.152.152:1150/tms/WEB-TMS/#/";
 
