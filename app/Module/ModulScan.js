@@ -42,7 +42,7 @@ async function scanLoadDc(driver, dtScan, dtSet) {
     await driver.sleep(2000)
     await waitloadend(driver);
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 10000).click();
-    await driver.sleep(3000)
+
 
 }
 
@@ -82,7 +82,7 @@ async function scanLoadOutDc(driver, dtScan, dtSet) {
     await driver.sleep(2000)
     await waitloadend(driver);
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 10000).click();
-    await driver.sleep(3000)
+
 
 
 }
@@ -125,7 +125,7 @@ async function scanLoadDcLastMile(driver, dtScan, dtSet) {
     await driver.sleep(2000)
     await waitloadend(driver);
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 10000).click();
-    await driver.sleep(3000)
+
 }
 
 module.exports = {

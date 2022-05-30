@@ -1,75 +1,62 @@
-// ไว้ลองเล่นเฉยๆ npm test
 const { Builder, By, Key, until } = require("selenium-webdriver")
 require("chromedriver");
-var should = require('chai').should();
+const should = require('chai').should();
+const dataConstant = require("./dataConstant.js")
+const modulMain = require('./Module/ModulMain.js');
+
+async function waitloadend(driver) {
+    try {
+        await driver.wait(until.elementIsNotVisible(driver.findElement(By.xpath(`//div[@id="isloadingpageformpc"]`))), 20000);
+    } catch (error) { }
+}
+
+async function GetTag(driver, dtScan, dtSet) {
+
+    await driver.get(dataConstant.webapi + "tms/tms-ordermanagesummaryv2");
+    await driver.sleep(2000);
+    await waitloadend(driver);
+    // await driver.sleep(2000);
+
+    //ติ๊กเลือก อันแรก
+    // await driver.findElement(By.xpath(`//order-manage-table-list-new-v2/div/div/div/div/table/tbody[@id="tbodyrow-0"]/tr/td/div/input`)).click();
+    // await driver.wait(until.elementLocated(By.xpath(`//order-manage-table-list-new-v2/div/div/div/div/table/tbody[@id="tbodyrow-0"]/tr/td/div/input`)), 10000).click();
+    // await driver.findElement(By.id(`grd1-0`));
+    // await driver.wait(until.elementLocated(By.id(`grd1-0`)), 10000).click();
+    await driver.wait(until.elementIsVisible(driver.findElement(By.id(`grd1-0`))), 5000).click();
+    await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//button[@ng-click="PrintTrackingNo()"]`))), 5000).click();
 
 
-/////// TEST CASE  ///////////
-//
-//  1.กรอก user passs มั่วๆ ต้องแจ้งเตือน Login Fail
-//  2.กรอก user ถูก pass ผิด ต้องแจ้งเตือน Login Fail
-//  3.กรอก user ผิด pass ถูก ต้องแจ้งเตือน Login Fail
-//  4.กรอก user ถูก pass ถูก ต้องเข้าเว็ปได้
-//
-///////////////////////////
+}
 
-describe("Test Login Web Site", function () {
+run();
 
-    var driver;
-    // http://147.50.152.152:1150/tms-dev/WEB-TMS/#/
-    const urlSite = "http://localhost:8086/#/login"
+async function run() {
+    describe('CASETEST01', async function () {
+        var driver = new Builder().forBrowser("chrome").build();
+        driver.manage().window().maximize();
 
-    var dtfaill = [
-        { user: 'asdasd', password: 'erwerw' },
-        { user: 'ADMIN', password: 'erwerw' },
-        { user: 'asdasd', password: 'ADMIN' },
-    ]
+        it('LoginPage', async function () {
+            await modulMain.loginBrowser(driver);
+        });
 
-    beforeEach(function () {
-        //open browser
-        driver = new Builder().forBrowser("chrome").build();
-    })
 
-    afterEach(async function () {
-        //close browser
-        await driver.quit();
-    })
+        it('GetTag', async function () {
 
-    dtfaill.forEach(({ user, password }) => {
-        //it block
-        it(`Test login fail user:${user} pass:${password}`, async function () {
-
-            //navigate to our browser
-            await driver.get(urlSite)
-
-            //add a todo
-            await driver.findElement(By.xpath('//input[@ng-model="loginData.User"]')).sendKeys(user);
-            await driver.findElement(By.xpath('//input[@ng-model="loginData.Password"]')).sendKeys(password);
-
-            await driver.findElement(By.xpath('//button[@ng-click="login(loginData.User,loginData.Password)"]')).sendKeys(Key.ENTER);
-
-            let ele = await driver.wait(until.elementLocated(By.xpath("//div[@class='modal-body ng-scope']/h3")), 5000);
-            let foo = await ele.getText();
-            foo.should.equal('Login Fail "');
-
+            await GetTag(driver);
 
         });
-    });
 
-    it(`TEST Login PASS user: ADMIN , Pass: ADMIN`, async function () {
 
-        //navigate to our browser
-        await driver.get(urlSite)
 
-        //add a todo
-        await driver.findElement(By.xpath('//input[@ng-model="loginData.User"]')).sendKeys("ADMIN");
-        await driver.findElement(By.xpath('//input[@ng-model="loginData.Password"]')).sendKeys("ADMIN");
-
-        await driver.findElement(By.xpath('//button[@ng-click="login(loginData.User,loginData.Password)"]')).sendKeys(Key.ENTER);
-        await driver.wait(until.urlContains('http://localhost:8086/#/tms/index'), 5000);
-
+        // it('Close', async function () {
+        //     await modulMain.CloseBrowser(driver);
+        // });
 
     });
+}
 
-});
 
+
+module.exports = {
+    GetTag
+}

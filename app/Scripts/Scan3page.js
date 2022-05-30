@@ -25,11 +25,13 @@ async function run() {
         it('scanLoadDc', async function () {
             const dtSet = { dc: "สำนักงานใหญ่" }
             await moduleScan.scanLoadDc(driver, dtScan, dtSet);
+            await driver.sleep(3000)
         });
 
         it('scanLoadOutDc', async function () {
             const dtSet = { dc: "สำนักงานใหญ่" }
             await moduleScan.scanLoadOutDc(driver, dtScan, dtSet);
+            await driver.sleep(3000)
         });
 
         it('scanLoadDcLastMile', async function () {
@@ -38,6 +40,7 @@ async function run() {
                 SubRoutelastmail: "ภาคเหนือ"
             }
             await moduleScan.scanLoadDcLastMile(driver, dtScan, dtSet);
+            await driver.sleep(3000)
         });
 
 
