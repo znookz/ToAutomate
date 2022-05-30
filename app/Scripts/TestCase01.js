@@ -3,6 +3,9 @@ require("chromedriver");
 const should = require('chai').should();
 const modulMain = require('../Module/ModulMain.js');
 const moduleC2C = require('../Module/ModulC2C.js');
+const moduleScan = require('../Module/ModulScan.js');
+const moduleTM = require('../Module/ModulTM.js');
+const dataConstant = require("../dataConstant.js")
 
 run();
 
@@ -28,19 +31,45 @@ async function run() {
             ];
 
             await moduleC2C.CreateC2C(driver, dtAddJOb, dtAddParcel);
+            await modulMain.waitloadend(driver, 2000);
         });
 
 
+        let dtScan = [];
+        it('GetTag', async function () {
+            dtScan = await moduleC2C.GetTag(driver);
+            await modulMain.waitloadend(driver, 2000);
+        });
 
-        await driver.sleep(3000)
 
+        it('scanLoadDc', async function () {
+            const dtSet = { dc: "เชียงราย" }
+            await moduleScan.scanLoadDc(driver, dtScan, dtSet);
+            await modulMain.waitloadend(driver, 2000);
+        });
 
+        let Tm_id = "";
+        it('CreateTM_Lastmile', async function () {
+            const dtSet = { dc: "สำนักงานใหญ่", dcto: "DC เชียงราย", driver: "ชัชชาติ", vehicle: "4กว4444" }
+            Tm_id = await moduleTM.CreateTM_Lastmile(driver, dtSet);
+            await modulMain.waitloadend(driver, 2000);
+        });
 
+        it('scanLoadLastMile', async function () {
+            const dtSet = { tm: Tm_id }
+            await moduleScan.scanLoadLastMile(driver, dtScan, dtSet);
+            await modulMain.waitloadend(driver, 2000);
+        });
 
+        it('DeliceyCarAndCloseAlertTM', async function () {
+            await driver.get(dataConstant.webapi + "tms/assign-delivery-view");
+            await modulMain.waitloadend(driver, 2000);
+            await moduleTM.DeliceyCarAndCloseAlertTM(driver);
+        });
 
-        // it('Close', async function () {
-        //     await modulMain.CloseBrowser(driver);
-        // });
+        it('Close', async function () {
+            await modulMain.CloseBrowser(driver);
+        });
 
     });
 }

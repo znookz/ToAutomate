@@ -3,27 +3,9 @@ require("chromedriver");
 const should = require('chai').should();
 const dataConstant = require("./dataConstant.js")
 const modulMain = require('./Module/ModulMain.js');
+const moduleScan = require('./Module/ModulScan.js');
+const moduleGetTag = require('./Module/ModulGetTag.js');
 
-async function waitloadend(driver) {
-    try {
-        await driver.wait(until.elementIsNotVisible(driver.findElement(By.xpath(`//div[@id="isloadingpageformpc"]`))), 20000);
-    } catch (error) { }
-}
-
-async function GetTag(driver, dtScan, dtSet) {
-
-    await driver.get(dataConstant.webapi + "tms/tms-ordermanagesummaryv2");
-    await driver.sleep(2000);
-    await waitloadend(driver);
-    // await driver.sleep(2000);
-
-    //ติ๊กเลือก อันแรก
-
-    await driver.wait(until.elementIsVisible(driver.findElement(By.id(`grd1-0`))), 5000).click();
-    await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//button[@ng-click="PrintTrackingNo()"]`))), 5000).click();
-
-
-}
 
 
 run();
@@ -37,14 +19,17 @@ async function run() {
             await modulMain.loginBrowser(driver);
         });
 
-
+        let TmArray = [];
         it('GetTag', async function () {
-
-            await GetTag(driver);
-
+            TmArray = await moduleGetTag.GetTag(driver);
         });
 
-
+        it('scanLoadDc', async function () {
+            const dtSet = { dc: "สำนักงานใหญ่" }
+            console.log(TmArray);
+            // await moduleScan.scanLoadDc(driver, TmArray, dtSet);
+            // await driver.sleep(3000)
+        });
 
         // it('Close', async function () {
         //     await modulMain.CloseBrowser(driver);
@@ -53,8 +38,3 @@ async function run() {
     });
 }
 
-
-
-module.exports = {
-    GetTag
-}

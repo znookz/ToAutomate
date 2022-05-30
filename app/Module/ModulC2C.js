@@ -3,26 +3,20 @@ const { Builder, By, Key, until } = require("selenium-webdriver")
 require("chromedriver");
 const should = require('chai').should();
 const dataConstant = require("../dataConstant.js")
+const modulMain = require('../Module/ModulMain.js');
 
-async function waitloadend(driver) {
-    try {
-        await driver.wait(until.elementIsNotVisible(driver.findElement(By.xpath(`//div[@id="isloadingpageformpc"]`))), 20000);
-    } catch (error) { }
-}
 
 async function CreateC2C(driver, dtAddJOb, dtAddParcel) {
 
     //select planReserbe
     await driver.get(dataConstant.webapi + "tms/tms-ordermanagesummaryv2")
 
-    await driver.sleep(2000);
-    await waitloadend(driver);
+    await modulMain.waitloadend(driver, 2000);
 
     await driver.wait(until.elementLocated(By.xpath(`//div[@ng-show="!header.advanceSearch"]/form/div/div/div/button[@ng-click="create('v2')"]`)), 20000).click();
     //เลือกใช้ที่อยู่เดียวกับลูกค้า
     await driver.findElement(By.xpath(`//input[@id="isCheckSameOwner"]`)).click();
-    await driver.sleep(1000)
-    await waitloadend(driver);
+    await modulMain.waitloadend(driver, 1000);
 
     async function AddJOBB() {
         //เพิ่ม JOB
@@ -65,16 +59,14 @@ async function CreateC2C(driver, dtAddJOb, dtAddParcel) {
                     //บันทึก สินค้า
                     await driver.wait(until.elementLocated(By.xpath(`//button[@ng-click="validateParcel()"]`)), 10000).click();
 
-                    await driver.sleep(1000)
-                    await waitloadend(driver);
+                    await modulMain.waitloadend(driver, 1000);
                 }
 
             }
             await AddProduct();
             //บันทึก JOB
             await driver.wait(until.elementLocated(By.xpath(`//button[@ng-click="validateTransportOrderJob()"]`)), 10000).click();
-            await driver.sleep(2000)
-            await waitloadend(driver);
+            await modulMain.waitloadend(driver, 2000);
         }
     }
     await AddJOBB();
@@ -85,34 +77,38 @@ async function CreateC2C(driver, dtAddJOb, dtAddParcel) {
     //ยืนยันบันทึก TO
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Confirm"]/button[@ng-click="ok()"]`)), 10000).click();
     // เช็คว่า SUCCESS หรือไม่  และปิด alert
-    await driver.sleep(3000)
-    await waitloadend(driver);
+    await modulMain.waitloadend(driver, 3000);
     let ele = await driver.wait(until.elementLocated(By.xpath(`//div[@id="title_Alert"]/h3`)), 10000);
     let foo = await ele.getText();
     foo.trim().should.equal('สำเร็จ');
-    await driver.sleep(2000)
-    await waitloadend(driver);
+    await modulMain.waitloadend(driver, 2000);
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 10000).click();
-
-    await driver.sleep(1000)
-    await waitloadend(driver);
+    await modulMain.waitloadend(driver, 1000);
     // กดปุ่ม confirm อันแรกสุดของตลาด
     await driver.findElement(By.xpath(`//order-manage-table-list-new-v2/div/div/div/div/table/tbody/tr/td/div/button[@ng-click="confirm(data,'confirm')"]`)).click();
     //ยืนยันบันทึก confirm
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Confirm"]/button[@ng-click="ok()"]`)), 10000).click();
     // เช็คว่า ยืนยันสำเร็จ หรือไม่ และปิด alert
-    await driver.sleep(1000)
-    await waitloadend(driver);
+    await modulMain.waitloadend(driver, 2000);
     let elee = await driver.wait(until.elementLocated(By.xpath(`//div[@id="body_Alert"]/h3`)), 10000);
     let fooo = await elee.getText();
     fooo.trim().should.equal('ยืนยันสำเร็จ');
-    await driver.sleep(1000)
-    await waitloadend(driver);
+    await modulMain.waitloadend(driver, 2000);
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 10000).click();
 
 }
 
+async function GetTag(driver, dtScan, dtSet) {
+
+    //ติ๊กเลือก อันแรก
+    await driver.wait(until.elementIsVisible(driver.findElement(By.id(`grd1-0`))), 5000).click();
+    await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//button[@ng-click="PrintTrackingNo()"]`))), 5000).click();
+    await modulMain.waitloadend(driver, 1000);
+    let text_tag = await driver.findElement(By.id(`TEXT_PrintTAG`)).getText();
+    return text_tag.split(",")
+}
+
 
 module.exports = {
-    CreateC2C
+    CreateC2C, GetTag
 }
