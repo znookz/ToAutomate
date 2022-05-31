@@ -31,14 +31,14 @@ async function run() {
             ];
 
             TO_id = await moduleC2C.CreateC2C(driver, dtAddJOb, dtAddParcel);
-            await modulMain.waitloadend(driver, 2000);
+            await modulMain.waitloadend(driver, 1000);
         });
 
 
         let dtScan = [];
         it('GetTag', async function () {
             dtScan = await moduleC2C.GetTag(driver, TO_id);
-            await modulMain.waitloadend(driver, 2000);
+            await modulMain.waitloadend(driver, 1000);
         });
 
 
@@ -63,13 +63,14 @@ async function run() {
 
         it('DeliceyCarAndCloseAlertTM', async function () {
             await driver.get(dataConstant.webapi + "tms/assign-delivery-view");
-            await modulMain.waitloadend(driver, 2000);
+            await modulMain.waitloadend(driver, 1000);
+            await modulMain.waitloadend(driver, 1000);
             await moduleTM.DeliceyCarAndCloseAlertTM(driver, Tm_id);
         });
 
-        it('Close', async function () {
-            await modulMain.CloseBrowser(driver);
-        });
+        // it('Close', async function () {
+        //     await modulMain.CloseBrowser(driver);
+        // });
 
     });
 }

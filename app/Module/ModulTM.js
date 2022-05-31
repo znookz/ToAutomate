@@ -5,7 +5,8 @@ const dataConstant = require("../dataConstant.js")
 const modulMain = require('../Module/ModulMain.js');
 
 async function DeliceyCarAndCloseAlertTM(driver, Tm_id) {
-    await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//input[@placeholder="` + Tm_id + `"]`))), 10000).click();
+    await modulMain.waitloadend(driver, 1000);
+    await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//input[@placeholder="` + Tm_id + `"]`))), 5000).click();
     await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//button[@ng-click="releaseTM();"]`))), 5000).click();
     //ยืนยันบันทึก confirm และปิด popup สำเร็จ
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Confirm"]/button[@ng-click="ok()"]`)), 10000).click();
@@ -18,7 +19,7 @@ async function DeliceyCarAndCloseAlertTM(driver, Tm_id) {
 
 
 async function confirmAndCloseAlertTM(driver, Tm_id) {
-    //เลือก บรรทัดแรก
+    await modulMain.waitloadend(driver, 1000);
     await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//input[@placeholder="` + Tm_id + `"]`))), 5000).click();
     await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//button[@ng-click="ConfirmStatusOnly();"]`))), 5000).click();
     //ยืนยันบันทึก confirm และปิด popup สำเร็จ
@@ -61,7 +62,7 @@ async function CreateTM_Lastmile(driver, dtSet) {
 
     await modulMain.waitloadend(driver, 2000);
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 10000).click();
-    await modulMain.waitloadend(driver, 2000);
+    await modulMain.waitloadend(driver, 1000);
     await confirmAndCloseAlertTM(driver, Tm_id);
     return Tm_id
 }

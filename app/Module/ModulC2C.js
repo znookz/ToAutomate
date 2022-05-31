@@ -85,8 +85,7 @@ async function CreateC2C(driver, dtAddJOb, dtAddParcel) {
     await modulMain.waitloadend(driver, 2000);
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 10000).click();
     await modulMain.waitloadend(driver, 1000);
-    // กดปุ่ม confirm อันแรกสุดของตลาด
-    // await driver.findElement(By.xpath(`//order-manage-table-list-new-v2/div/div/div/div/table/tbody/tr/td/div/button[@ng-click="confirm(data,'confirm')"]`)).click();
+    await modulMain.waitloadend(driver, 1000);
     await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//input[@placeholder="` + TO_id + `"]`))), 5000).click();
     await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//button[@ng-click="confirmAll()"]`))), 5000).click();
     //ยืนยันบันทึก confirm
@@ -102,6 +101,7 @@ async function CreateC2C(driver, dtAddJOb, dtAddParcel) {
 }
 
 async function GetTag(driver, TO_id) {
+    await modulMain.waitloadend(driver, 1000);
     await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//input[@placeholder="` + TO_id + `"]`))), 5000).click();
     await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//button[@ng-click="PrintTrackingNo()"]`))), 5000).click();
     await modulMain.waitloadend(driver, 1000);

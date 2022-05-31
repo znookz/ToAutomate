@@ -20,10 +20,21 @@ async function run() {
             await modulMain.loginBrowser(driver);
         });
 
-        let Tm_id = "TMD22050031";
+        // let id = "LPW02A22053100024";
+        let Tm_id = "TMD22050043";
+
+        // it('ปปปปปป', async function () {
+        //     // await driver.get(dataConstant.webapi + "tms/tms-ordermanagesummaryv2")
+        //     await driver.get(dataConstant.webapi + "tms/assign-delivery-view");
+        //     await modulMain.waitloadend(driver, 2000);
+        //     await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//input[@placeholder="` + Tm_id + `"]`))), 5000).click();
+
+        // });
+
         it('DeliceyCarAndCloseAlertTM', async function () {
             await driver.get(dataConstant.webapi + "tms/assign-delivery-view");
-            await modulMain.waitloadend(driver, 2000);
+            await modulMain.waitloadend(driver, 1000);
+            await modulMain.waitloadend(driver, 1000);
             await moduleTM.DeliceyCarAndCloseAlertTM(driver, Tm_id);
         });
         // placeholder="TMD22050027"
