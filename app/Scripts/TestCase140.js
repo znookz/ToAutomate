@@ -7,6 +7,12 @@ const moduleScan = require('../Module/ModulScan.js');
 const moduleTM = require('../Module/ModulTM.js');
 const dataConstant = require("../dataConstant.js")
 
+// 1.สร้าง order ปลายทาง เชียงาย
+// 2.เอา Tag สแกน เข้าพื้นที่รับ เชียงราย
+// 3.สร้งแผน lastmin เชียงราย
+// 5.สแกนขึ่นรถ last mine เชียงราย
+// 6.ปล่อยรถ
+
 run();
 async function run() {
     describe('Create C2C', async function () {
@@ -34,13 +40,11 @@ async function run() {
             await modulMain.waitloadend(driver, 1000);
         });
 
-
         let dtScan = [];
         it('GetTag', async function () {
             dtScan = await moduleC2C.GetTag(driver, TO_id);
             await modulMain.waitloadend(driver, 1000);
         });
-
 
         it('scanLoadDc', async function () {
             const dtSet = { dc: "เชียงราย" }
@@ -50,7 +54,7 @@ async function run() {
 
         let Tm_id = "";
         it('CreateTM_Lastmile', async function () {
-            const dtSet = { dc: "สำนักงานใหญ่", dcto: "DC เชียงราย", driver: "ชัชชาติ", vehicle: "4กว4444" }
+            const dtSet = { dc: "สำนักงานใหญ่", dcform: "DC เชียงราย", driver: "ชัชชาติ", vehicle: "4กว4444" }
             Tm_id = await moduleTM.CreateTM_Lastmile(driver, dtSet);
             await modulMain.waitloadend(driver, 2000);
         });
@@ -68,9 +72,9 @@ async function run() {
             await moduleTM.DeliceyCarAndCloseAlertTM(driver, Tm_id);
         });
 
-        // it('Close', async function () {
-        //     await modulMain.CloseBrowser(driver);
-        // });
+        it('Close', async function () {
+            await modulMain.CloseBrowser(driver);
+        });
 
     });
 }

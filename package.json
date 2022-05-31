@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=Report,reportFilename=Main-Report 'app/Main.js' ",
     "CreateC2C": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=Report,reportFilename=CreateC2C-Report 'app/Scripts/CreateC2C.js' ",
-    "TestCase01": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=Report,reportFilename=CreateC2C-Report 'app/Scripts/TestCase01.js' "
+    "TestCase140": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=Report,reportFilename=CreateC2C-Report 'app/Scripts/TestCase140.js' ",
+    "TestCase145": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=Report,reportFilename=CreateC2C-Report 'app/Scripts/TestCase145.js' "
   },
   "author": "",
   "license": "ISC",

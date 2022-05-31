@@ -6,7 +6,7 @@ const dataConstant = require("../dataConstant.js")
 const modulMain = require('../Module/ModulMain.js');
 
 
-async function CreateC2C(driver, dtAddJOb, dtAddParcel) {
+async function CreateC2C(driver, dtAddTo, dtAddJOb, dtAddParcel, dtoption) {
 
     //select planReserbe
     await driver.get(dataConstant.webapi + "tms/tms-ordermanagesummaryv2")
@@ -14,8 +14,28 @@ async function CreateC2C(driver, dtAddJOb, dtAddParcel) {
     await modulMain.waitloadend(driver, 2000);
 
     await driver.wait(until.elementLocated(By.xpath(`//div[@ng-show="!header.advanceSearch"]/form/div/div/div/button[@ng-click="create('v2')"]`)), 20000).click();
-    //เลือกใช้ที่อยู่เดียวกับลูกค้า
-    await driver.findElement(By.xpath(`//input[@id="isCheckSameOwner"]`)).click();
+
+    if (dtoption.sameowneraddress == true) {
+        //เลือกใช้ที่อยู่เดียวกับลูกค้า
+        await driver.findElement(By.xpath(`//input[@id="isCheckSameOwner"]`)).click();
+    } else {
+        //ชื่อผ้รับ
+        await driver.findElement(By.xpath(`//input[@ng-model="itemsS1.Shipper_Name"]`)).sendKeys(dtAddTo.name);
+        //เบอร์ผู้ติดต่อปลายทาง
+        await driver.findElement(By.xpath(`//input[@ng-model="itemsS1.Shipper_Tel"]`)).sendKeys(dtAddTo.tel);
+        //บ้านเลขที่ปลายทาง
+        await driver.findElement(By.xpath(`//input[@ng-model="itemsS1.Shipper_Address"]`)).sendKeys(dtAddTo.address);
+        //เลือก จังหวัด
+        await driver.findElement(By.xpath(`//pc-dropdown-api-search-v2[@datares="itemsS1.select_Province"]/form/span`)).click();
+        await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search-v2[@datares="itemsS1.select_Province"]/form/ul/li/a[contains(., "` + dtAddTo.province + `")]`)), 10000).click();
+        //เลือก อำเภอ
+        await driver.findElement(By.xpath(`//pc-dropdown-api-search-v2[@datares="itemsS1.select_District"]/form/span`)).click();
+        await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search-v2[@datares="itemsS1.select_District"]/form/ul/li/a[contains(., "` + dtAddTo.district + `")]`)), 10000).click();
+        //เลือก ตำบล
+        await driver.findElement(By.xpath(`//pc-dropdown-api-search-v2[@datares="itemsS1.select_SubDistrict"]/form/span`)).click();
+        await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search-v2[@datares="itemsS1.select_SubDistrict"]/form/ul/li/a[contains(., "` + dtAddTo.subDistrict + `")]`)), 10000).click();
+    }
+
     await modulMain.waitloadend(driver, 1000);
 
     async function AddJOBB() {
