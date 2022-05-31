@@ -78,14 +78,17 @@ async function CreateC2C(driver, dtAddJOb, dtAddParcel) {
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Confirm"]/button[@ng-click="ok()"]`)), 10000).click();
     // เช็คว่า SUCCESS หรือไม่  และปิด alert
     await modulMain.waitloadend(driver, 3000);
-    let ele = await driver.wait(until.elementLocated(By.xpath(`//div[@id="title_Alert"]/h3`)), 10000);
-    let foo = await ele.getText();
+    let foo = await driver.wait(until.elementLocated(By.xpath(`//div[@id="title_Alert"]/h3`)), 10000).getText();
     foo.trim().should.equal('สำเร็จ');
+    let TO_id = await driver.wait(until.elementLocated(By.xpath(`//div[@id="body_Alert"]/h3`)), 10000).getText();
+    TO_id = TO_id.replace("เลขที่เอกสาร : ", "").trim();
     await modulMain.waitloadend(driver, 2000);
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 10000).click();
     await modulMain.waitloadend(driver, 1000);
     // กดปุ่ม confirm อันแรกสุดของตลาด
-    await driver.findElement(By.xpath(`//order-manage-table-list-new-v2/div/div/div/div/table/tbody/tr/td/div/button[@ng-click="confirm(data,'confirm')"]`)).click();
+    // await driver.findElement(By.xpath(`//order-manage-table-list-new-v2/div/div/div/div/table/tbody/tr/td/div/button[@ng-click="confirm(data,'confirm')"]`)).click();
+    await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//input[@placeholder="` + TO_id + `"]`))), 5000).click();
+    await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//button[@ng-click="confirmAll()"]`))), 5000).click();
     //ยืนยันบันทึก confirm
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Confirm"]/button[@ng-click="ok()"]`)), 10000).click();
     // เช็คว่า ยืนยันสำเร็จ หรือไม่ และปิด alert
@@ -95,13 +98,11 @@ async function CreateC2C(driver, dtAddJOb, dtAddParcel) {
     fooo.trim().should.equal('ยืนยันสำเร็จ');
     await modulMain.waitloadend(driver, 2000);
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 10000).click();
-
+    return TO_id
 }
 
-async function GetTag(driver, dtScan, dtSet) {
-
-    //ติ๊กเลือก อันแรก
-    await driver.wait(until.elementIsVisible(driver.findElement(By.id(`grd1-0`))), 5000).click();
+async function GetTag(driver, TO_id) {
+    await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//input[@placeholder="` + TO_id + `"]`))), 5000).click();
     await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//button[@ng-click="PrintTrackingNo()"]`))), 5000).click();
     await modulMain.waitloadend(driver, 1000);
     let text_tag = await driver.findElement(By.id(`TEXT_PrintTAG`)).getText();

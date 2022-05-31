@@ -8,7 +8,6 @@ const moduleTM = require('../Module/ModulTM.js');
 const dataConstant = require("../dataConstant.js")
 
 run();
-
 async function run() {
     describe('Create C2C', async function () {
         var driver = new Builder().forBrowser("chrome").build();
@@ -18,6 +17,7 @@ async function run() {
             await modulMain.loginBrowser(driver);
         });
 
+        let TO_id = "";
         it('Create C2C', async function () {
 
             const dtAddJOb = [
@@ -30,14 +30,14 @@ async function run() {
                 { type: "ตู้เย็น", name: "10Q", amount: "1", unit: "ตู้" }
             ];
 
-            await moduleC2C.CreateC2C(driver, dtAddJOb, dtAddParcel);
+            TO_id = await moduleC2C.CreateC2C(driver, dtAddJOb, dtAddParcel);
             await modulMain.waitloadend(driver, 2000);
         });
 
 
         let dtScan = [];
         it('GetTag', async function () {
-            dtScan = await moduleC2C.GetTag(driver);
+            dtScan = await moduleC2C.GetTag(driver, TO_id);
             await modulMain.waitloadend(driver, 2000);
         });
 
@@ -64,7 +64,7 @@ async function run() {
         it('DeliceyCarAndCloseAlertTM', async function () {
             await driver.get(dataConstant.webapi + "tms/assign-delivery-view");
             await modulMain.waitloadend(driver, 2000);
-            await moduleTM.DeliceyCarAndCloseAlertTM(driver);
+            await moduleTM.DeliceyCarAndCloseAlertTM(driver, Tm_id);
         });
 
         it('Close', async function () {

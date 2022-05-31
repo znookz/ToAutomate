@@ -4,7 +4,8 @@ const should = require('chai').should();
 const dataConstant = require("./dataConstant.js")
 const modulMain = require('./Module/ModulMain.js');
 const moduleScan = require('./Module/ModulScan.js');
-const moduleGetTag = require('./Module/ModulGetTag.js');
+const moduleC2C = require('./Module/ModulC2C.js');
+const moduleTM = require('./Module/ModulTM.js');
 
 
 
@@ -19,17 +20,14 @@ async function run() {
             await modulMain.loginBrowser(driver);
         });
 
-        let TmArray = [];
-        it('GetTag', async function () {
-            TmArray = await moduleGetTag.GetTag(driver);
+        let Tm_id = "TMD22050031";
+        it('DeliceyCarAndCloseAlertTM', async function () {
+            await driver.get(dataConstant.webapi + "tms/assign-delivery-view");
+            await modulMain.waitloadend(driver, 2000);
+            await moduleTM.DeliceyCarAndCloseAlertTM(driver, Tm_id);
         });
+        // placeholder="TMD22050027"
 
-        it('scanLoadDc', async function () {
-            const dtSet = { dc: "สำนักงานใหญ่" }
-            console.log(TmArray);
-            // await moduleScan.scanLoadDc(driver, TmArray, dtSet);
-            // await driver.sleep(3000)
-        });
 
         // it('Close', async function () {
         //     await modulMain.CloseBrowser(driver);
