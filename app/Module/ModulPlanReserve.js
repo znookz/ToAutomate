@@ -19,12 +19,8 @@ async function confirmPlan(driver, plan_id) {
 async function Create_PlanReserve(driver, dtSet) {
     await driver.get(dataConstant.webapi + "tms/PlanReserveSummary");
     await modulMain.waitloadend(driver, 2000);
-
-
     await driver.wait(until.elementLocated(By.xpath('//button[@ng-click="create()"]')), 20000).click();
     await driver.wait(until.elementLocated(By.xpath('//input[@id="distributionCenter"]')), 10000).click();
-
-
     //เลือกศูนย์ที่ออกแผน
     await driver.findElement(By.xpath(`//pc-dropdown-api-search-v2[@id="'distributionCenter'"]/form/span`)).click();
     await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search-v2[@id="'distributionCenter'"]/form/ul/li/a[contains(., "` + dtSet.dc + `")]`)), 10000).click();

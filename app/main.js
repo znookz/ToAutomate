@@ -22,24 +22,24 @@ async function run() {
         });
 
 
-        let plan_id = "";
-        it('Create_PlanReserve', async function () {
-            const dtSet = {
-                dc: "สำนักงานใหญ่", dcto: "DC ลำปาง", vehicletype: "รถ 4 ล้อ",
-                owner: "Lazada", shipto: "357 หมู่ที่ 12 ซ.สุข", number_of_vehicle: 2,
-                day: "20", mounth: "July", year: "2022"
-            }
-            plan_id = await modulPlanReserve.Create_PlanReserve(driver, dtSet);
-            await modulMain.waitloadend(driver, 2000);
-        });
+        // let plan_id = "";
+        // it('Create_PlanReserve', async function () {
+        //     const dtSet = {
+        //         dc: "สำนักงานใหญ่", dcto: "DC ลำปาง", vehicletype: "รถ 4 ล้อ",
+        //         owner: "Lazada", shipto: "357 หมู่ที่ 12 ซ.สุข", number_of_vehicle: 2,
+        //         day: "20", mounth: "July", year: "2022"
+        //     }
+        //     plan_id = await modulPlanReserve.Create_PlanReserve(driver, dtSet);
+        //     await modulMain.waitloadend(driver, 2000);
+        // });
 
-        it('Approe_PlanReserve', async function () {
-            const dtSet = {
-                id: plan_id, vehicletype: "รถ 4 ล้อ", number_of_vehicle_approve: 2
-            }
-            await modulPlanReserve.Approve_PlanReserve(driver, dtSet);
-            await modulMain.waitloadend(driver, 2000);
-        });
+        // it('Approe_PlanReserve', async function () {
+        //     const dtSet = {
+        //         id: plan_id, vehicletype: "รถ 4 ล้อ", number_of_vehicle_approve: 2
+        //     }
+        //     await modulPlanReserve.Approve_PlanReserve(driver, dtSet);
+        //     await modulMain.waitloadend(driver, 2000);
+        // });
 
         // it('Close', async function () {
         //     await modulMain.CloseBrowser(driver);
