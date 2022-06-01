@@ -6,6 +6,7 @@ const modulMain = require('./Module/ModulMain.js');
 const moduleScan = require('./Module/ModulScan.js');
 const moduleC2C = require('./Module/ModulC2C.js');
 const moduleTM = require('./Module/ModulTM.js');
+const modulPlanReserve = require('./Module/ModulPlanReserve.js');
 
 
 
@@ -20,25 +21,25 @@ async function run() {
             await modulMain.loginBrowser(driver);
         });
 
-        // let id = "LPW02A22053100024";
-        let Tm_id = "TMD22050043";
 
-        // it('ปปปปปป', async function () {
-        //     // await driver.get(dataConstant.webapi + "tms/tms-ordermanagesummaryv2")
-        //     await driver.get(dataConstant.webapi + "tms/assign-delivery-view");
-        //     await modulMain.waitloadend(driver, 2000);
-        //     await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//input[@placeholder="` + Tm_id + `"]`))), 5000).click();
-
-        // });
-
-        it('DeliceyCarAndCloseAlertTM', async function () {
-            await driver.get(dataConstant.webapi + "tms/assign-delivery-view");
-            await modulMain.waitloadend(driver, 1000);
-            await modulMain.waitloadend(driver, 1000);
-            await moduleTM.DeliceyCarAndCloseAlertTM(driver, Tm_id);
+        let plan_id = "";
+        it('Create_PlanReserve', async function () {
+            const dtSet = {
+                dc: "สำนักงานใหญ่", dcto: "DC ลำปาง", vehicletype: "รถ 4 ล้อ",
+                owner: "Lazada", shipto: "357 หมู่ที่ 12 ซ.สุข", number_of_vehicle: 2,
+                day: "20", mounth: "July", year: "2022"
+            }
+            plan_id = await modulPlanReserve.Create_PlanReserve(driver, dtSet);
+            await modulMain.waitloadend(driver, 2000);
         });
-        // placeholder="TMD22050027"
 
+        it('Approe_PlanReserve', async function () {
+            const dtSet = {
+                id: plan_id, vehicletype: "รถ 4 ล้อ", number_of_vehicle_approve: 2
+            }
+            await modulPlanReserve.Approve_PlanReserve(driver, dtSet);
+            await modulMain.waitloadend(driver, 2000);
+        });
 
         // it('Close', async function () {
         //     await modulMain.CloseBrowser(driver);

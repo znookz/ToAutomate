@@ -216,6 +216,8 @@ async function scanLoadOutTm(driver, dtScan, dtSet) {
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 10000).click();
 }
 
+
+
 module.exports = {
     scanLoadDc, scanLoadOutDc, scanLoadDcLastMile, scanLoadLastMile, scanLoadLineHaul, scanLoadOutTm
 }
