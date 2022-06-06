@@ -30,21 +30,19 @@ async function run() {
 
         let TO_id = "";
         it('Create C2C', async function () {
-
             const dtAddTo = { name: "selenium owner", tel: "888888", address: "88/88", province: "กรุงเทพมหานคร", district: "คลองสาน", subDistrict: "คลองสาน" };
-
             const dtAddJOb = [
                 { name: "selenium 1", tel: "888888", address: "88/88", province: "กรุงเทพมหานคร", district: "ลาดพร้าว", subDistrict: "ลาดพร้าว" },
             ];
 
             const dtAddParcel = [
-                { type: "ตู้เย็น", name: "10Q", amount: "1", unit: "ตู้" },
-                // { type: "ตู้เย็น", name: "10Q", amount: "1", unit: "ตู้" }
+                { type: "ผ้ากิ๊บ", name: "SP01 : ผ้ากิ๊บเล็ก", amount: "1", unit: "ผ้ากิ๊บ" },
+                { type: "ผ้ากิ๊บ", name: "SP02 : ผ้ากิ๊บใหญ่", amount: "1", unit: "ผ้ากิ๊บ" }
             ];
 
             const dtoption = { sameowneraddress: false }
 
-            TO_id = await moduleC2C.CreateC2C(driver, dtAddTo, dtAddJOb, dtAddParcel, dtoption);
+            TO_id = await moduleC2C.CreateC2C(driver, dtAddJOb, dtAddParcel, dtoption, dtAddTo);
             await modulMain.waitloadend(driver, 1000);
         });
 
@@ -80,7 +78,7 @@ async function run() {
         it('CreateTM_LineHaul', async function () {
             const dtSet = {
                 dc: "สำนักงานใหญ่", dcform: "สำนักงานใหญ่", route: "กรุงเทพและปริมณฑล",
-                subroute: "กรุงเทพและปริมณฑล", driver: "ชัชชาติ", vehicle: "4กว4444", head_select: ["DC ลาดพร้าว"]
+                subroute: "กรุงเทพและปริมณฑล", driver: "บักเก่ง แอบนอน", vehicle: "4กว4665", head_select: ["DC ลาดพร้าว"]
             }
             //  vehicleowner: "รถบริษัท"
             Tm_id = await moduleTM.CreateTM_LineHaul(driver, dtSet);
@@ -108,7 +106,7 @@ async function run() {
 
         let Tm_id2 = "";
         it('CreateTM_Lastmile', async function () {
-            const dtSet = { dc: "สำนักงานใหญ่", dcform: "DC ลาดพร้าว", driver: "ชัชชาติ", vehicle: "4กว4444" }
+            const dtSet = { dc: "สำนักงานใหญ่", dcform: "DC ลาดพร้าว", driver: "บักเก่ง แอบนอน", vehicle: "4กว4665" }
             Tm_id2 = await moduleTM.CreateTM_Lastmile(driver, dtSet);
             await modulMain.waitloadend(driver, 2000);
         });

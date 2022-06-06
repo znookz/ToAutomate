@@ -43,7 +43,7 @@ async function Create_PlanReserve(driver, dtSet) {
     await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="form.date_of_use_vehicle"]/div/ul/li/div/table/thead/tr/th/button[@ng-click="toggleMode()"]`)), 10000).click();
     await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="form.date_of_use_vehicle"]/div/ul/li/div/table/thead/tr/th/button[@ng-click="toggleMode()"]`)), 10000).click();
     await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="form.date_of_use_vehicle"]/div/ul/li/div/table/tbody/tr/td/button[span[contains(., ` + dtSet.year + `)]]`)), 10000).click();
-    await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="form.date_of_use_vehicle"]/div/ul/li/div/table/tbody/tr/td/button[span[contains(., ` + dtSet.mounth + `)]]`)), 10000).click();
+    await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="form.date_of_use_vehicle"]/div/ul/li/div/table/tbody/tr/td/button[span[contains(., '` + dtSet.mounth + `')]]`)), 10000).click();
     await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="form.date_of_use_vehicle"]/div/ul/li/div/table/tbody/tr/td/button[span[contains(., ` + dtSet.day + `)]]`)), 10000).click();
 
     //กด reserve

@@ -6,7 +6,7 @@ const dataConstant = require("../dataConstant.js")
 const modulMain = require('../Module/ModulMain.js');
 
 
-async function CreateC2C(driver, dtAddTo, dtAddJOb, dtAddParcel, dtoption) {
+async function CreateC2C(driver, dtAddJOb, dtAddParcel, dtoption, dtAddTo) {
 
     //select planReserbe
     await driver.get(dataConstant.webapi + "tms/tms-ordermanagesummaryv2")
@@ -15,7 +15,7 @@ async function CreateC2C(driver, dtAddTo, dtAddJOb, dtAddParcel, dtoption) {
 
     await driver.wait(until.elementLocated(By.xpath(`//div[@ng-show="!header.advanceSearch"]/form/div/div/div/button[@ng-click="create('v2')"]`)), 20000).click();
 
-    if (dtoption.sameowneraddress == true) {
+    if (dtoption == undefined || dtoption.sameowneraddress == true) {
         //เลือกใช้ที่อยู่เดียวกับลูกค้า
         await driver.findElement(By.xpath(`//input[@id="isCheckSameOwner"]`)).click();
     } else {
@@ -57,6 +57,18 @@ async function CreateC2C(driver, dtAddTo, dtAddJOb, dtAddParcel, dtoption) {
             //เลือก ตำบล
             await driver.findElement(By.xpath(`//pc-dropdown-api-search-v2[@datares="itemsJob.select_destination_subDistrict"]/form/span`)).click();
             await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search-v2[@datares="itemsJob.select_destination_subDistrict"]/form/ul/li/a[contains(., "` + ele_addjob.subDistrict + `")]`)), 10000).click();
+            // ETA
+            if (ele_addjob.eta != undefined) {
+                //เลือกวันที่
+                await driver.findElement(By.xpath(`//pc-date-picker-day[@ng-model="itemsJob.Expected_Delivery_Date"]/div/input[@ng-model="DateShow"]`)).click();
+                await modulMain.waitloadend(driver, 500);
+                await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="itemsJob.Expected_Delivery_Date"]/div/ul/li/div/table/thead/tr/th/button[@ng-click="toggleMode()"]`)), 10000).click();
+                await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="itemsJob.Expected_Delivery_Date"]/div/ul/li/div/table/thead/tr/th/button[@ng-click="toggleMode()"]`)), 10000).click();
+                await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="itemsJob.Expected_Delivery_Date"]/div/ul/li/div/table/tbody/tr/td/button[span[contains(., ` + ele_addjob.eta.year + `)]]`)), 10000).click();
+                await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="itemsJob.Expected_Delivery_Date"]/div/ul/li/div/table/tbody/tr/td/button[span[contains(., '` + ele_addjob.eta.mounth + `')]]`)), 10000).click();
+                await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="itemsJob.Expected_Delivery_Date"]/div/ul/li/div/table/tbody/tr/td/button[span[contains(., ` + ele_addjob.eta.day + `)]]`)), 10000).click();
+            }
+
             //เพิ่ม บันทึกปลายทาง
             await driver.wait(until.elementLocated(By.xpath(`//button[@ng-click="saveDesTP()"]`)), 10000).click();
 

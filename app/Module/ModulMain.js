@@ -2,7 +2,11 @@
 const { Builder, By, Key, until } = require("selenium-webdriver")
 require("chromedriver");
 const should = require('chai').should();
-const dataConstant = require("../dataConstant.js")
+const dataConstant = require("../dataConstant.js");
+
+/// IMPORT SUBMODUL
+const subValidate = require("./SubModul/Validate.js")
+// END IMPORT SUBMODUL
 
 
 async function loginBrowser(driver) {
@@ -19,8 +23,6 @@ async function CloseBrowser(driver) {
     await driver.quit();
 }
 
-
-
 async function waitloadend(driver, wait) {
     await driver.sleep(wait)
     try {
@@ -28,7 +30,12 @@ async function waitloadend(driver, wait) {
     } catch (error) { }
 }
 
+var SubModul = {
+    ValidateIsRed: async function (driver) {
+        await subValidate.CheckBoxIsRed(driver)
+    }
+}
 
 module.exports = {
-    loginBrowser, CloseBrowser, waitloadend
+    loginBrowser, CloseBrowser, waitloadend, SubModul
 }

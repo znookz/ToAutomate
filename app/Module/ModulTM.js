@@ -44,8 +44,8 @@ async function CreateTM_Lastmile(driver, dtSet) {
     await driver.findElement(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Vehicle"]/form/span`)).click();
     await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Vehicle"]/form/ul/li/a[contains(., "` + dtSet.vehicle + `")]`)), 10000).click();
     //เลือก คนขับ
-    await driver.findElement(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Driver1"]/form/span`)).click();
-    await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Driver1"]/form/ul/li/a[contains(., "` + dtSet.driver + `")]`)), 10000).click();
+    await driver.findElement(By.xpath(`//pc-dropdown-api-search[@datares="chooseDirective.Driver1"]/form/span`)).click();
+    await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search[@datares="chooseDirective.Driver1"]/form/ul/li/a[contains(., "` + dtSet.driver + `")]`)), 10000).click();
 
     await driver.wait(until.elementLocated(By.xpath(`//button[@ng-click="saveTM();"]`)), 10000).click();
     await modulMain.waitloadend(driver, 2000);
@@ -78,8 +78,8 @@ async function CreateTM_LineHaul(driver, dtSet) {
     await driver.findElement(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.DistributionCenterFrom"]/form/span`)).click();
     await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.DistributionCenterFrom"]/form/ul/li/a[contains(., "` + dtSet.dcform + `")]`)), 10000).click();
     //เลือก คนขับ
-    await driver.findElement(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Driver1"]/form/span`)).click();
-    await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Driver1"]/form/ul/li/a[contains(., "` + dtSet.driver + `")]`)), 10000).click();
+    await driver.findElement(By.xpath(`//pc-dropdown-api-search[@datares="chooseDirective.Driver1"]/form/span`)).click();
+    await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search[@datares="chooseDirective.Driver1"]/form/ul/li/a[contains(., "` + dtSet.driver + `")]`)), 10000).click();
     //เลือก ทะเบียนรถ (หัว)
     await driver.findElement(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Vehicle"]/form/span`)).click();
     await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Vehicle"]/form/ul/li/a[contains(., "` + dtSet.vehicle + `")]`)), 10000).click();
@@ -132,8 +132,8 @@ async function CreateTM_CollectFormCustomer(driver, dtSet) {
     await driver.findElement(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Vehicle"]/form/span`)).click();
     await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Vehicle"]/form/ul/li/a[contains(., "` + dtSet.vehicle + `")]`)), 10000).click();
     //เลือก คนขับ
-    await driver.findElement(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Driver1"]/form/span`)).click();
-    await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Driver1"]/form/ul/li/a[contains(., "` + dtSet.driver + `")]`)), 10000).click();
+    await driver.findElement(By.xpath(`//pc-dropdown-api-search[@datares="chooseDirective.Driver1"]/form/span`)).click();
+    await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search[@datares="chooseDirective.Driver1"]/form/ul/li/a[contains(., "` + dtSet.driver + `")]`)), 10000).click();
     //เลือก ลูกค้า
     await driver.findElement(By.xpath(`//pc-dropdown-api-search[@datares="chooseDirective.Owner"]/form/span`)).click();
     await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search[@datares="chooseDirective.Owner"]/form/ul/li/a[contains(., "` + dtSet.owner + `")]`)), 10000).click();
@@ -166,8 +166,8 @@ async function CreateTM_CollectFormDC(driver, dtSet) {
     await driver.findElement(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Vehicle"]/form/span`)).click();
     await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Vehicle"]/form/ul/li/a[contains(., "` + dtSet.vehicle + `")]`)), 10000).click();
     //เลือก คนขับ
-    await driver.findElement(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Driver1"]/form/span`)).click();
-    await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Driver1"]/form/ul/li/a[contains(., "` + dtSet.driver + `")]`)), 10000).click();
+    await driver.findElement(By.xpath(`//pc-dropdown-api-search[@datares="chooseDirective.Driver1"]/form/span`)).click();
+    await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search[@datares="chooseDirective.Driver1"]/form/ul/li/a[contains(., "` + dtSet.driver + `")]`)), 10000).click();
 
     await modulMain.waitloadend(driver, 1000);
     //เลือก DC

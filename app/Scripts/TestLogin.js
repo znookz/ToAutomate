@@ -16,8 +16,7 @@ var should = require('chai').should();
 describe("Test Login Web Site", function () {
 
     var driver;
-    // http://147.50.152.152:1150/tms-dev/WEB-TMS/#/
-    const urlSite = "http://localhost:8086/#/login"
+    const urlSite = "http://147.50.152.152:1150/tms/WEB-TMS/#/"
 
     var dtfaill = [
         { user: 'asdasd', password: 'erwerw' },
