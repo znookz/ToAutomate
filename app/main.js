@@ -1,6 +1,6 @@
 const { Builder, By, Key, until } = require("selenium-webdriver")
 require("chromedriver");
-const should = require('chai').should();
+var should = require('chai').should();
 const dataConstant = require("./dataConstant.js")
 const modulMain = require('./Module/ModulMain.js');
 const moduleScan = require('./Module/ModulScan.js');
@@ -13,20 +13,23 @@ run();
 async function run() {
     describe('CASETEST01', async function () {
         var driver = new Builder().forBrowser("chrome").build();
-        driver.manage().window().maximize();
+        // driver.manage().window().maximize();
 
         it('LoginPage', async function () {
             await modulMain.loginBrowser(driver);
         });
 
-        it('Validate', async function () {
-            await driver.get(dataConstant.webapi + "tms/transportation-information-tp-collect-customer-form");
-            await driver.wait(until.elementLocated(By.xpath(`//button[@ng-click="saveTM();"]`)), 10000).click();
-            await modulMain.waitloadend(driver, 1000);
-            let sss = await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.DistributionCenterFrom"][@class="ng-isolate-scope validate-error"]`)), 10000);
-            console.log(sss)
-            await modulMain.SubModul.ValidateIsRed(driver);
-        });
+
+        // it('Validate', async function () {
+        //     await driver.get(dataConstant.webapi + "tms/transportation-information-tp-collect-customer-form");
+        //     await driver.wait(until.elementLocated(By.xpath(`//button[@ng-click="saveTM();"]`)), 10000).click();
+        //     await modulMain.waitloadend(driver, 1000);
+
+        //     let validateDCf = await modulMain.SubModul.ValidateIsRed(driver, '//pc-dropdown-api-search-v2[@datares="chooseDirective.DistributionCenterFrom"][@class="ng-isolate-scope validate-error"]')
+        //     validateDCf.should.equal(true);
+
+        //     await modulMain.CloseBrowser(driver);
+        // });
 
         // it('Create C2C', async function () {
 

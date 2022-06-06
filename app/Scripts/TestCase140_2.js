@@ -27,7 +27,7 @@ async function run() {
                 {
                     name: "selenium 1", tel: "888888", address: "88/88",
                     province: "กรุงเทพมหานคร", district: "ลาดพร้าว", subDistrict: "ลาดพร้าว",
-                    eta: { day: "8", mounth: "June", year: "2022" }
+                    eta: { day: "10", mounth: "June", year: "2022" }
                 },
             ];
 
@@ -49,7 +49,7 @@ async function run() {
             dtScan = await moduleC2C.GetTag(driver, TO_id);
             await modulMain.waitloadend(driver, 1000);
 
-            console.log("TO : ", TO_id, " - วันที่ : 8");
+            console.log("TO : ", TO_id, " - วันที่ : 10");
             console.log("TAG : ", dtScan.toString());
         });
 

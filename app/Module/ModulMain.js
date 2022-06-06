@@ -31,8 +31,8 @@ async function waitloadend(driver, wait) {
 }
 
 var SubModul = {
-    ValidateIsRed: async function (driver) {
-        await subValidate.CheckBoxIsRed(driver)
+    ValidateIsRed: async function (driver, xpath) {
+        return await subValidate.CheckBoxIsRed(driver, xpath)
     }
 }
 

@@ -64,9 +64,9 @@ async function CreateC2C(driver, dtAddJOb, dtAddParcel, dtoption, dtAddTo) {
                 await modulMain.waitloadend(driver, 500);
                 await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="itemsJob.Expected_Delivery_Date"]/div/ul/li/div/table/thead/tr/th/button[@ng-click="toggleMode()"]`)), 10000).click();
                 await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="itemsJob.Expected_Delivery_Date"]/div/ul/li/div/table/thead/tr/th/button[@ng-click="toggleMode()"]`)), 10000).click();
-                await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="itemsJob.Expected_Delivery_Date"]/div/ul/li/div/table/tbody/tr/td/button[span[contains(., ` + ele_addjob.eta.year + `)]]`)), 10000).click();
+                await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="itemsJob.Expected_Delivery_Date"]/div/ul/li/div/table/tbody/tr/td/button[span[contains(., '` + ele_addjob.eta.year + `')]]`)), 10000).click();
                 await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="itemsJob.Expected_Delivery_Date"]/div/ul/li/div/table/tbody/tr/td/button[span[contains(., '` + ele_addjob.eta.mounth + `')]]`)), 10000).click();
-                await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="itemsJob.Expected_Delivery_Date"]/div/ul/li/div/table/tbody/tr/td/button[span[contains(., ` + ele_addjob.eta.day + `)]]`)), 10000).click();
+                await driver.wait(until.elementLocated(By.xpath(`//pc-date-picker-day[@ng-model="itemsJob.Expected_Delivery_Date"]/div/ul/li/div/table/tbody/tr/td/button[span[contains(., '` + ele_addjob.eta.day + `')]]`)), 10000).click();
             }
 
             //เพิ่ม บันทึกปลายทาง
