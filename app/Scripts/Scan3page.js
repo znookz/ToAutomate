@@ -19,7 +19,7 @@ async function run() {
         });
 
         const dtScan = [
-            "LPW02A0122052700044TG", "LPW02A0122052700045TG"
+            "LPW02A0122062100001TG", "LPW02A0122062100002TG"
         ]
 
         it('scanLoadDc', async function () {

@@ -18,7 +18,7 @@ async function run() {
         it('LoginPage', async function () {
             await modulMain.loginBrowser(driver);
         });
-////////
+
 
         // it('Validate', async function () {
         //     await driver.get(dataConstant.webapi + "tms/transportation-information-tp-collect-customer-form");
