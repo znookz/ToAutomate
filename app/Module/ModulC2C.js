@@ -14,7 +14,8 @@ async function CreateC2C(driver, dtAddJOb, dtAddParcel, dtoption, dtAddTo) {
     await modulMain.waitloadend(driver, 2000);
 
     await driver.wait(until.elementLocated(By.xpath(`//div[@ng-show="!header.advanceSearch"]/form/div/div/div/button[@ng-click="create('v2')"]`)), 20000).click();
-
+    
+    await modulMain.waitloadend(driver, 2000);
     if (dtoption == undefined || dtoption.sameowneraddress == true) {
         //เลือกใช้ที่อยู่เดียวกับลูกค้า
         await driver.findElement(By.xpath(`//input[@id="isCheckSameOwner"]`)).click();
