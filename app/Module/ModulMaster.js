@@ -90,6 +90,7 @@ async function InactiveDriver(driver,dtAddText) {
     elee.trim().should.equal('บันทึกสำเร็จ');
     await modulMain.waitloadend(driver, 2000);
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 2000).click();
+    ///////
 }
 
 module.exports = {
