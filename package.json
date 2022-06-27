@@ -5,7 +5,9 @@
   "main": "app/main.js",
   "scripts": {
     "test": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=tp_test-report,reportFilename=ScanTEST 'app/Main.js'",
-    "login": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=tp_test-report,reportFilename=ScanTEST 'app/Login.js'"
+    "login": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=tp_test-report,reportFilename=ScanTEST 'app/Login.js'",
+    "CreateGR": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=tp_test-report,reportFilename=ScanTEST 'app/CreateGR.js'",
+    "runtest": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=tp_test-report,reportFilename=ScanTEST 'app/Runtest.js'"
   },
   "author": "",
   "license": "ISC",
