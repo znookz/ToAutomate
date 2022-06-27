@@ -22,13 +22,11 @@ async function run() {
 
         it('DeleteDriver', async function() {
             var i = 4 //เพิ่มจำนวนรอบ
-            await driver.get(dataConstant.webapi + "tms/tms-mdriver")
-            await modulMain.waitloadend(driver, 2000);
-
             for (let index = 0; index < i; index++) {
-                await modulMaster.DeleteDriver(driver,dtAddText);
+            await modulMaster.DeleteDriver(driver,dtAddText);
             }
         });
+
         it('Close', async function () {
             await modulMain.CloseBrowser(driver);
         });

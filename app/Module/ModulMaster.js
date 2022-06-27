@@ -9,7 +9,7 @@ async function CreateDriver(driver,dtAddText) {
     //เปิดหน้า Master Driver
     await driver.get(dataConstant.webapi + "tms/tms-mdriver")
     //รอ 2 วิ
-    await modulMain.waitloadend(driver, 2000);
+    await modulMain.waitloadend(driver, 1000);
     //กดปุ่ม +
     await driver.findElement(By.xpath(`//button[@ng-click="create()"]`)).click();
     //กรอก รหัสพนักงาน
@@ -59,7 +59,8 @@ async function CreateDriver(driver,dtAddText) {
 
 async function DeleteDriver(driver,dtAddText) {
     //เปิดหน้า Master Driver
-
+    await driver.get(dataConstant.webapi + "tms/tms-mdriver")
+    await modulMain.waitloadend(driver, 1000);
     //กรอก ID ที่ช่องค้นหา
     await driver.findElement(By.xpath(`//div[@class="typeahead-demo"]/input[@ng-model="value"]`)).sendKeys(dtAddText.id);
     //กดค้นหา
@@ -90,8 +91,8 @@ async function DeleteDriver(driver,dtAddText) {
     await modulMain.waitloadend(driver, 500);
     //กดปุ่มตกลง
     await driver.findElement(By.xpath(`//div[@id="btn_Confirm"]/button[@ng-click="ok()"]`)).click();
-    await modulMain.waitloadend(driver, 500);
-    await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 10000).click();
+    await modulMain.waitloadend(driver, 3000); //เปลี่ยนให้ต่ำกว่านี้ไม่ได้ อนิเมชั่นโหลดไม่ทัน กด
+    await driver.findElement(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)).click();
     await modulMain.waitloadend(driver, 500);
 }
 

@@ -22,7 +22,7 @@ async function run() {
         } 
 
         it('CreateDriver', async function() {
-            var i = 2 //เพิ่มจำนวนรอบ
+            var i = 5 //เพิ่มจำนวนรอบ
             for (let index = 0; index < i; index++) {
                 await modulMaster.CreateDriver(driver,dtAddText);
             }
