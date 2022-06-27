@@ -8,9 +8,9 @@ const webapi = api;
 
 const urlLogin = webapi + "login"
 const urlindex = webapi + "wms/index"
-const urlGR = webapi + "gr-summary"
+const urlGR = webapi + "wms/gr-summary"
 
 
 module.exports = {
-    webapi, urlLogin, urlindex
+    webapi, urlLogin, urlindex, urlGR
 }

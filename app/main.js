@@ -15,7 +15,8 @@ describe("Test Log In", function () {
 
         //navigate to our browser
         await driver.get("http://203.151.136.18/SahaTH_BD_WMS/#/login")
-
+    });
+});
 //         //add a todo
 //         await driver.findElement(By.id("sampletodotext")).sendKeys("Learn Selenium", Key.RETURN);
 
