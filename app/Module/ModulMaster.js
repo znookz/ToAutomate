@@ -16,7 +16,7 @@ async function CreateDriver(driver,dtAddText) {
     await driver.findElement(By.xpath(`//input[@ng-model="item.Driver_Id"]`)).sendKeys(dtAddText.id);
     //เลือก คำนำหน้า
     await driver.findElement(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Prefix"]/form/span`)).click();
-    await modulMain.waitloadend(driver, 1000);
+    await modulMain.waitloadend(driver, 500);
     await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Prefix"]/form/ul/li/a[contains(., "`+dtAddText.prefix+`")]`)), 10000).click();
     //กรอก ชื่อ
     await driver.findElement(By.xpath(`//input[@ng-model="item.First_Name"]`)).sendKeys(dtAddText.firstname);
@@ -45,55 +45,57 @@ async function CreateDriver(driver,dtAddText) {
     //มือถือ
     await driver.findElement(By.xpath(`//input[@ng-model="item.Mobile"]`)).sendKeys(dtAddText.tel);
     //อัพโหลดรูป
-    await driver.findElement(By.xpath(`//input[@id="TruckPicture"]`)).sendKeys("C:/Users/Giant/Pictures/ดาวน์โหลด.jpg");
+    await driver.findElement(By.xpath(`//input[@id="TruckPicture"]`)).sendKeys("C:/Users/uSeR/Pictures/ดาวน์โหลด.jpg");
+    await modulMain.waitloadend(driver, 500);
 
     //กดบันทึก
-    await driver.wait(until.elementLocated(By.xpath(`//button[@ng-click="validateForm()"]`)), 2000).click();
-    //รอ 2 วิ
-    await modulMain.waitloadend(driver, 2000);
-
-    // เช็คว่า ยืนยันสำเร็จ หรือไม่ และปิด alert
-    await modulMain.waitloadend(driver, 2000);
+    await driver.wait(until.elementLocated(By.xpath(`//button[@ng-click="validateForm()"]`)), 10000).click();
+    //เช็คว่า ยืนยันสำเร็จ หรือไม่ และปิด alert
     let elee = await driver.wait(until.elementLocated(By.xpath(`//div[@id="body_Alert"]/h3`)), 10000).getText();
     elee.trim().should.equal('บันทึกสำเร็จ');
-    await modulMain.waitloadend(driver, 2000);
-    await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 2000).click();
+    await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 10000).click();
+    await modulMain.waitloadend(driver, 500);
 } 
 
-async function InactiveDriver(driver,dtAddText) {
+async function DeleteDriver(driver,dtAddText) {
     //เปิดหน้า Master Driver
-    await driver.get(dataConstant.webapi + "tms/tms-mdriver")
-    //รอ 2 วิ
-    await modulMain.waitloadend(driver, 2000);
+
     //กรอก ID ที่ช่องค้นหา
     await driver.findElement(By.xpath(`//div[@class="typeahead-demo"]/input[@ng-model="value"]`)).sendKeys(dtAddText.id);
     //กดค้นหา
     await driver.findElement(By.xpath(`//button[@ng-click="filter()"]`)).click();
-    //รอ 2 วิ
-    await modulMain.waitloadend(driver, 2000);
+    await modulMain.waitloadend(driver, 500);
     //กดปุ่มแก้ไข
     await driver.findElement(By.xpath(`//button[@ng-click="edit(row)"]`)).click();
-    //รอ 2 วิ
-    await modulMain.waitloadend(driver, 2000);
-    //กดหาสถานะ
-    await driver.findElement(By.xpath(`//pc-dropdown-search[@datares="chooseDirective.dtStatus"]/form/span`)).click();
+    await modulMain.waitloadend(driver, 500);
     //กดหาสถานะ inactive
-    await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-search[@datares="chooseDirective.dtStatus"]/form/ul/li/a[contains(., "`+dtAddText.status+`")]`)), 2000).click();
+    await driver.findElement(By.xpath(`//pc-dropdown-search[@datares="chooseDirective.dtStatus"]/form/span`)).click();
+    await modulMain.waitloadend(driver, 500);
+    await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-search[@datares="chooseDirective.dtStatus"]/form/ul/li/a[contains(., "`+dtAddText.status+`")]`)), 10000).click();
 
     //กดบันทึก
-    await driver.wait(until.elementLocated(By.xpath(`//button[@ng-click="validateForm()"]`)), 2000).click();
-    //รอ 2 วิ
-    await modulMain.waitloadend(driver, 2000);
-
+    await driver.wait(until.elementLocated(By.xpath(`//button[@ng-click="validateForm()"]`)), 10000).click();
     // เช็คว่า ยืนยันสำเร็จ หรือไม่ และปิด alert
-    let elee = await driver.wait(until.elementLocated(By.xpath(`//div[@id="body_Alert"]/h3`)), 1000).getText();
-    elee.trim().should.equal('บันทึกสำเร็จ');
-    await modulMain.waitloadend(driver, 2000);
-    await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 2000).click();
-    ///////
+    let fsave = await driver.wait(until.elementLocated(By.xpath(`//div[@id="body_Alert"]/h3`)), 10000).getText();
+    fsave.trim().should.equal('บันทึกสำเร็จ');
+    await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 10000).click();
+    await modulMain.waitloadend(driver, 500);
+    //กรอก ID ที่ช่องค้นหา
+    await driver.findElement(By.xpath(`//div[@class="typeahead-demo"]/input[@ng-model="value"]`)).sendKeys(dtAddText.id);
+    //กดค้นหา
+    await driver.findElement(By.xpath(`//button[@ng-click="filter()"]`)).click();
+    await modulMain.waitloadend(driver, 500);
+    //กดปุ่มลบ
+    await driver.findElement(By.xpath(`//button[@ng-click="validateDelete(row,$index)"]`)).click();
+    await modulMain.waitloadend(driver, 500);
+    //กดปุ่มตกลง
+    await driver.findElement(By.xpath(`//div[@id="btn_Confirm"]/button[@ng-click="ok()"]`)).click();
+    await modulMain.waitloadend(driver, 500);
+    await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 10000).click();
+    await modulMain.waitloadend(driver, 500);
 }
 
 module.exports = {
     CreateDriver,
-    InactiveDriver
+    DeleteDriver
 }

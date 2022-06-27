@@ -2,6 +2,7 @@ const { Builder, By, Key, until } = require("selenium-webdriver")
 require("chromedriver");
 const should = require('chai').should();
 const modulMain = require('../Module/ModulMain.js');
+const dataConstant = require("../dataConstant.js")
 const modulMaster = require('../Module/ModulMaster.js');
 
 run();
@@ -16,22 +17,21 @@ async function run() {
         });
 
         const dtAddText = {
-            id:"123456",prefix:"นาง",firstname:"กา",lastname:"กอย",idnumber:"1601234428978",tel:"0964455888",status:"Inactive",
-            birthdate: { day: "20", mounth: "June", year: "1990" },
-            startworkingdate: { day: "10", mounth: "June", year: "2022" }
+            id:"123456",status:"Inactive" //เปลี่ยน id ที่จะต้องการลบ
         }
 
-        it('CreateDriver', async function() {
+        it('DeleteDriver', async function() {
+            var i = 4 //เพิ่มจำนวนรอบ
+            await driver.get(dataConstant.webapi + "tms/tms-mdriver")
+            await modulMain.waitloadend(driver, 2000);
 
-            await modulMaster.CreateDriver(driver,dtAddText);
+            for (let index = 0; index < i; index++) {
+                await modulMaster.DeleteDriver(driver,dtAddText);
+            }
         });
-
-        it('InactiveDriver', async function () {
-            await modulMaster.InactiveDriver(driver,dtAddText);
+        it('Close', async function () {
+            await modulMain.CloseBrowser(driver);
         });
-        // it('Close', async function () {
-        //     await modulMain.CloseBrowser(driver);
-        // });
 
     });
 }

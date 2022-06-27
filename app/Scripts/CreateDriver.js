@@ -16,19 +16,21 @@ async function run() {
         });
 
         const dtAddText = {
-            id:"123456",prefix:"นาง",firstname:"ดอย",lastname:"คำ",idnumber:"1601234428978",tel:"0964455888",status:"Inactive",
+            id:"123456",prefix:"นาย",firstname:"กา",lastname:"กอย",idnumber:"1601234428978",tel:"0964455888",status:"Inactive",
             birthdate: { day: "20", mounth: "June", year: "1990" },//ถ้าจะแก้ไขส่วนนี้ต้องไปดูจำนวนการคลิกที่ Modul ด้วย
-            startworkingdate: { day: "10", mounth: "June", year: "2022" }
-        }
+            startworkingdate: { day: "10", mounth: "June", year: "2022" } 
+        } 
 
         it('CreateDriver', async function() {
-
-            await modulMaster.CreateDriver(driver,dtAddText);
+            var i = 2 //เพิ่มจำนวนรอบ
+            for (let index = 0; index < i; index++) {
+                await modulMaster.CreateDriver(driver,dtAddText);
+            }
         });
 
-        // it('Close', async function () {
-        //     await modulMain.CloseBrowser(driver);
-        // });
+        it('Close', async function () {
+            await modulMain.CloseBrowser(driver);
+        });
 
     });
 }
