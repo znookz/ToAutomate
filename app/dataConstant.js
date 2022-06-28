@@ -1,8 +1,8 @@
 
 
 // const api = "http://localhost:8086/#/";
-// const api = "http://147.50.152.152:1150/tms-dev/WEB-TMS/#/";
-const api = "http://203.151.136.18/SahaTH_BD_WMS/#/";
+// const api = http://203.151.136.18/SahaTH_BD_WMS/#/";
+const api = "http://203.151.136.18/SahaTH_FZ_WMS/#/";
 
 const webapi = api;
 
