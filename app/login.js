@@ -12,6 +12,14 @@ async function loginBrowser(driver,user,pass) {
     await driver.wait(until.urlContains(dataConstant.urlindex), 5000);
 }
 
+async function waitloadend(driver, wait) {
+    await driver.sleep(wait)
+    try {
+        await driver.wait(until.elementIsNotVisible(driver.findElement(By.xpath(`//dp-pageload/div [@aria-hidden="false"]`))), 20000);
+    } catch (error) { }
+}
+
+
 module.exports = {
-    loginBrowser
+    loginBrowser, waitloadend
 }
