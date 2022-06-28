@@ -9,7 +9,7 @@ async function loginBrowser(driver,user,pass) {
     await driver.findElement(By.xpath('//input[@ng-model="loginData.User"]')).sendKeys(user);
     await driver.findElement(By.xpath('//input[@ng-model="loginData.Password"]')).sendKeys(pass);
     await driver.findElement(By.xpath('//button[@ng-click="login(loginData.User,loginData.Password)"]')).sendKeys(Key.ENTER);
-    await driver.wait(until.urlContains(dataConstant.urlindex), 5000);
+    await driver.wait(until.urlContains(dataConstant.urlindex), 20000);
 }
 
 async function waitloadend(driver, wait) {

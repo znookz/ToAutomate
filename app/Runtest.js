@@ -31,17 +31,26 @@ async function run() {
         .build();
       
         
-        it('LoginPage', async function () {
+        it('Login Page', async function () {
             await login.loginBrowser(driver,"admintest","123456");
             await login.waitloadend(driver, 2000);
         }); 
 
         
         it('Create GR', async function () {
-            const header = {Dcn_No:"A47856", Inv_no:"GMS0201", Owner: "MERCEDES-BENZ", Vendor: "ไม่ระบุ",
-            Documenttype: "นำเข้าจากต่างประเทศ(ใบขน0)", Warehouse: "คลังสินค้าเขตปลอดอากร", Vehicletype: "4 ล้อ", Licenseplate: "8กฮ7263"}
-            await gr.CreateHeaderGR (driver, header); 
+            const header = {Dcn_No:"A47856", Inv_no:"GMS0201", Owner: "MERCEDES-BENZ", Vendor: "ไม่ระบุ",DocumentType: "นำเข้าจากต่างประเทศ(ใบขน0)", 
+            Warehouse: "คลังสินค้าเขตปลอดอากร", VehicleType: "4 ล้อ", LicensePlate: "8กฮ7263", Driver: "จักรกฤษณ์ โพธิ์แปลง", 
+            MS_BillofLading: "", H_BillofLading: "", Currency: "USD", ExchangeRate: "35", ContainerSize: "", 
+            Container_No: "C10000", Seal_No: "S8000", Vessel_Name: "Vermount", Flight_No: "F4786", PortofOrigin: "", PortofDestination: "",
+            CountryOrigin: "", CountryDestination: "", Remark: ""   
+            }
+
+            const addItem =[{SKU: "Mercedes-Benz A200"}];
+            await gr.CreateGR (driver, header, addItem); 
+            //await gr.CreateGR (driver, header); 
         }); 
+
+    
      
     });
 }
