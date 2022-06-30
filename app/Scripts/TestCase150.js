@@ -23,44 +23,47 @@ async function run() {
             await modulMain.loginBrowser(driver);
         });
 
-        let TO_id = "";
-        it('Create C2C', async function () {
+        // let TO_id = "";
+        // it('Create C2C', async function () {
 
-            const dtAddJOb = [
-                { name: "บรูส แบรนเนอร์", tel: "0966654471", address: "550/12 รัสเวกัส ถนนโล่ง", province: "กรุงเทพมหานคร", district: "ลาดพร้าว", subDistrict: "จรเข้บัว" },
-                // { name: "selenium 2", tel: "888888", address: "88/88", province: "เชียงราย", district: "แม่สาย", subDistrict: "เวียงพางคำ" },
-            ];
+        //     const dtAddJOb = [
+        //         { name: "บรูส แบรนเนอร์", tel: "0966654471", address: "550/12 รัสเวกัส ถนนโล่ง", province: "เชียงราย", district: "เชียงแสน", subDistrict: "ป่าสัก" },
+        //         { name: "โทนี่ สตาร์ค", tel: "0966654472", address: "550/13 รัสเวกัส ถนนติด", province: "เชียงราย", district: "เชียงของ", subDistrict: "ศรีดอนชัย" },
+        //     ];
 
-            const dtAddParcel = [
-                { type: "Box", name: "M : กล่อง M", amount: "25", unit: "Box" },
-                { type: "Box", name: "M : กล่อง M", amount: "30", unit: "Box" }
-            ];
+        //     const dtAddParcel = [
+        //         { type: "Box", name: "M : กล่อง M", amount: "25", unit: "Box" },
+        //         //{ type: "Box", name: "M : กล่อง M", amount: "30", unit: "Box" }
+        //     ];
 
-            TO_id = await moduleC2C.CreateC2C(driver, dtAddJOb, dtAddParcel);
-            await modulMain.waitloadend(driver, 1000);
-        });
+        //     TO_id = await moduleC2C.CreateC2C(driver, dtAddJOb, dtAddParcel);
+        //     await modulMain.waitloadend(driver, 2000);
+        // });
 
-        let dtScan = [];
-        it('GetTag', async function () {
-            dtScan = await moduleC2C.GetTag(driver, TO_id);
-            await modulMain.waitloadend(driver, 1000);
-        });
-            //สแกนเข้าพื้นที่รับ
-        it('scanLoadDc', async function () {
-            const dtSet = { dc: "DC ลาดพร้าว" }
-            await moduleScan.scanLoadDc(driver, dtScan, dtSet);
-            await modulMain.waitloadend(driver, 2000);
-        });
+        // let dtScan = [];
+        // it('GetTag', async function () {
+        //     dtScan = await moduleC2C.GetTag(driver, TO_id);
+        //     await modulMain.waitloadend(driver, 2000);
+        // });
+        //     //สแกนเข้าพื้นที่รับ
+        // it('scanLoadDc', async function () {
+        //     const dtSet = { dc: "DC เชียงราย" }
+        //     await moduleScan.scanLoadDc(driver, dtScan, dtSet);
+        //     await modulMain.waitloadend(driver, 2000);
+        // });
             //สร้างแผน LastMile
         let Tm_id = "";
         it('CreateTM_Lastmile', async function () {
-            const dtSet = { dc: "สำนักงานใหญ่", dcform: "DC ลาดพร้าว", driver: "นาย บักเก่ง แอบนอน", vehicle: "4กว4665" }
+            const dtSet = { dc: "สำนักงานใหญ่", dcform: "DC เชียงราย", driver: "นาย บักเก่ง แอบนอน", vehicle: "4กว4665" }
             Tm_id = await moduleTM.CreateTM_Lastmile(driver, dtSet);
             await modulMain.waitloadend(driver, 2000);
         });
             //สแกนขึ้นรถ LastMile
         it('scanLoadLastMile', async function () {
+            await driver.get(dataConstant.webapi + "tms/tms.scanLoadLastMile")
+            await modulMain.waitloadend(driver, 2000);
             const dtSet = { tm: Tm_id }
+            const dtScan = {}
             await moduleScan.scanLoadLastMile(driver, dtScan, dtSet);
             await modulMain.waitloadend(driver, 2000);
         });

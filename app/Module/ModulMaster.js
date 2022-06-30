@@ -91,7 +91,7 @@ async function DeleteDriver(driver,dtAddText) {
     await modulMain.waitloadend(driver, 500);
     //กดปุ่มตกลง
     await driver.findElement(By.xpath(`//div[@id="btn_Confirm"]/button[@ng-click="ok()"]`)).click();
-    await modulMain.waitloadend(driver, 3000); //เปลี่ยนให้ต่ำกว่านี้ไม่ได้ อนิเมชั่นโหลดไม่ทัน กด
+    await modulMain.waitloadend(driver, 5000); //เปลี่ยนให้ต่ำกว่านี้ไม่ได้ อนิเมชั่นโหลดไม่ทัน กด
     await driver.findElement(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)).click();
     await modulMain.waitloadend(driver, 500);
 }
