@@ -20,11 +20,11 @@ async function CreateGR (driver, header, addItem) {
     await driver.findElement(By.xpath('//input[@ng-model="filterModel.invoice_No"]')).sendKeys(header.Inv_no);
     //AutoComplete Owner
     await driver.findElement(By.xpath('//div[@id="tab1"]/div/div/div/div/auto-comple[@ng-model="filterModel.owner_Index"]/div/input')).sendKeys(header.Owner)
-    await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab1"]/div/div/div/div/auto-comple[@ng-model="filterModel.owner_Index"]/div/ul/li/a[contains(., "` + header.Owner + `")]`)), 10000).click();
+    await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab1"]/div/div/div/div/auto-comple[@ng-model="filterModel.owner_Index"]/div/ul/li`)), 10000).click();
     //AutoComplete Vendor
     if(header.Vendor != undefined && header.Vendor != ""){
         await driver.findElement(By.xpath('//div[@id="tab1"]/div/div/div/div/auto-comple[@ng-model="filterModel.vendor_Index"]/div/input')).sendKeys(header.Vendor)
-        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab1"]/div/div/div/div/auto-comple[@ng-model="filterModel.vendor_Index"]/div/ul/li/a[contains(., "` + header.Vendor + `")]`)), 10000).click();
+        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab1"]/div/div/div/div/auto-comple[@ng-model="filterModel.vendor_Index"]/div/ul/li`)), 10000).click();
     }
     //Drop Down Document Type
     await driver.findElement(By.xpath(`//div[@id="tab1"]/div/div/div/div/select[@ng-model="dropdownDocumentType.model"]`)).click();
@@ -40,12 +40,12 @@ async function CreateGR (driver, header, addItem) {
     //AutoComplete License Plate
     if(header.LicensePlate != undefined && header.LicensPlate != ""){
         await driver.findElement(By.xpath('//div[@id="tab1"]/div/div/div/div/auto-comple[@ng-model="filterModel.licensePlate_Index"]/div/input')).sendKeys(header.LicensePlate)
-        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab1"]/div/div/div/div/auto-comple[@ng-model="filterModel.licensePlate_Index"]/div/ul/li/a[contains(., "` + header.LicensePlate + `")]`)), 10000).click();
+        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab1"]/div/div/div/div/auto-comple[@ng-model="filterModel.licensePlate_Index"]/div/ul/li`)), 10000).click();
     }
     //AutoComplete Driver
     if(header.Driver != undefined && header.Driver != ""){
         await driver.findElement(By.xpath('//div[@id="tab1"]/div/div/div/div/auto-comple[@ng-model="filterModel.driver_Index"]/div/input')).sendKeys(header.Driver)
-        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab1"]/div/div/div/div/auto-comple[@ng-model="filterModel.driver_Index"]/div/ul/li/a[contains(., "` + header.Driver + `")]`)), 10000).click();
+        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab1"]/div/div/div/div/auto-comple[@ng-model="filterModel.driver_Index"]/div/ul/li`)), 10000).click();
     }
 
     //Import Information Click
@@ -54,12 +54,12 @@ async function CreateGR (driver, header, addItem) {
     //AutoComplete Master Bill of Lading/Airway
     if(header.MS_BillofLading != undefined && header.MS_BillofLading != ""){
         await driver.findElement(By.xpath('//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.master_Bill_Lading_Index"]/div/input')).sendKeys(header.MS_BillofLading)
-        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.master_Bill_Lading_Index"]/div/ul/li/a[contains(., "` + header.MS_BillofLading + `")]`)), 10000).click();
+        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.master_Bill_Lading_Index"]/div/ul/li`)), 10000).click();
     }
     //AutoComplete House Bill of Lading/Airway
     if(header.H_BillofLading != undefined && header.H_BillofLading != ""){
         await driver.findElement(By.xpath('//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.house_Bill_Lading_Index"]/div/input')).sendKeys(header.H_BillofLading)
-        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.house_Bill_Lading_Index"]/div/ul/li/a[contains(., "` + header.H_BillofLading + `")]`)), 10000).click();
+        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.house_Bill_Lading_Index"]/div/ul/li`)), 10000).click();
     }
     //Drop Down Currency
     if(header.Currency != undefined && header.Currency != ""){
@@ -73,7 +73,7 @@ async function CreateGR (driver, header, addItem) {
     //AutoComplete Container Size
     if(header.ContainerSize != undefined && header.ContainerSize != ""){
         await driver.findElement(By.xpath('//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.container_Rate_Index"]/div/input')).sendKeys(header.ContainerSize)
-        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.container_Rate_Index"]/div/ul/li/a[contains(., "` + header.ContainerSize + `")]`)), 20000).click();
+        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.container_Rate_Index"]/div/ul/li`)), 20000).click();
     }
     //Container Number
     if(header.Container_No != undefined && header.Container_No != ""){
@@ -95,22 +95,22 @@ async function CreateGR (driver, header, addItem) {
     //AutoComplete Port of Origin
     if(header.PortofOrigin != undefined && header.PortofOrigin != ""){
         await driver.findElement(By.xpath('//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.port_Origin_Index"]/div/input')).sendKeys(header.PortofOrigin)
-        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.port_Origin_Index"]/div/ul/li/a[contains(., "` + header.PortofOrigin + `")]`)), 15000).click();
+        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.port_Origin_Index"]/div/ul/li`)), 15000).click();
     }
     //AutoComplete Port of Destination
     if(header.PortofDestination != undefined && header.PortofDestination != ""){
         await driver.findElement(By.xpath('//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.port_Destination_Index"]/div/input')).sendKeys(header.PortofDestination)
-        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.port_Destination_Index"]/div/ul/li/a[contains(., "` + header.PortofDestination + `")]`)), 15000).click();
+        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.port_Destination_Index"]/div/ul/li`)), 15000).click();
     }
     //AutoComplete Country Origin
     if(header.CountryOrigin != undefined && header.CountryOrigin != ""){
         await driver.findElement(By.xpath('//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.country_Origin_Index"]/div/input')).sendKeys(header.CountryOrigin)
-        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.country_Origin_Index"]/div/ul/li/a[contains(., "` + header.CountryOrigin + `")]`)), 15000).click();
+        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.country_Origin_Index"]/div/ul/li`)), 15000).click();
     }
      //AutoComplete Country Destination
      if(header.CountryDestination != undefined && header.CountryDestination != ""){
         await driver.findElement(By.xpath('//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.country_Destination_Index"]/div/input')).sendKeys(header.CountryDestination)
-        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.country_Destination_Index"]/div/ul/li/a[contains(., "` + header.CountryDestination + `")]`)), 15000).click();
+        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab2"]/div/div/div/div/auto-comple[@ng-model="filterModel.country_Destination_Index"]/div/ul/li`)), 15000).click();
     }
     //Remark
     if(header.Remark != undefined && header.Remark != ""){
@@ -121,14 +121,53 @@ async function CreateGR (driver, header, addItem) {
 
     async function AddItem() {
         for (item of addItem){
+            if(item.SKU != undefined && item.SKU != ""){
             //AutoComplete SKU
             await driver.findElement(By.xpath('//auto-comple-id[@ng-model="filterItemModel.product_Index"]/div/input')).sendKeys(item.SKU)
-            await driver.wait(until.elementLocated(By.xpath(`//auto-comple-id[@ng-model="filterItemModel.product_Index"]/div/input[contains(., "` + item.SKU + `")]`)), 15000).sendKeys(Key.ENTER);
+            //await driver.wait(until.elementLocated(By.xpath(`//auto-comple-id[@ng-model="filterItemModel.product_Index"]/div/input[contains(., "` + item.SKU + `")]`)), 15000).sendKeys(Key.ENTER);
+            await driver.wait(until.elementLocated(By.xpath(`//auto-comple-id[@ng-model="filterItemModel.product_Index"]/div/ul/li`)), 15000).click();
+            }
+            // await login.waitloadend(driver, 2000);
             //AutoComplete Description
-            // await driver.findElement(By.xpath('//auto-comple[@value="filterItemModel.product_Index"]/div/input')).sendKeys(item.Description)
-            // await driver.wait(until.elementLocated(By.xpath(`//auto-comple[@ng-model="filterItemModel.product_Index"]/div/input[contains(., "` + item.Description + `")]`)), 15000).sendKeys(Key.ENTER);
+            // if(item.Description != undefined && item.Description != ""){
+            // await driver.findElement(By.xpath('//auto-comple[@ng-model="filterItemModel.product_Index"]/div/input')).sendKeys(item.Description , Key.RETURN)
+            // await driver.wait(until.elementLocated(By.xpath(`//auto-comple[@ng-model="filterItemModel.product_Index"]/div/ul/li[@ng-click="selectMatch($index, $event)"]`)), 15000).click();
+            // await driver.wait(until.elementLocated(By.xpath(`//auto-comple[@ng-model="filterItemModel.product_Index"]/div/ul/li[@ng-click="selectMatch($index, $event)"]`)), 15000).select();
+            // }
+
+            //Drop Down Status
+            if(item.Status != undefined && item.Status != ""){
+                await driver.findElement(By.xpath(`//select[@ng-model="dropdownItemStatus.model"]`)).click();
+                await driver.wait(until.elementLocated(By.xpath(`//select[@ng-model="dropdownItemStatus.model"]/option[@label="`+item.Status+`"]`)),15000).click();
+            }
+
+            //Exchange Rate Price
+            if(item.ExchangeRatePrice != undefined && item.ExchangeRatePrice != ""){
+            await driver.findElement(By.xpath('//input[@ng-model="filterItemModel.totalPrice_Foreign_Currency"]')).sendKeys(item.ExchangeRatePrice)
+            }
+
+            //Lot
+            if(item.Lot != undefined && item.Lot != ""){
+            await driver.findElement(By.xpath('//input[@ng-model="filterItemModel.product_Lot"]')).clear()
+            await driver.findElement(By.xpath('//input[@ng-model="filterItemModel.product_Lot"]')).sendKeys(item.Lot)
+            }
+
+            //Tariff Code
+            if(item.TariffCode != undefined && item.TariffCode != ""){
+                await driver.findElement(By.xpath('//input[@ng-model="filterItemModel.tariff"]')).sendKeys(item.TariffCode)
+            }
+
+            //Qty Unit
+            if(item.QtyUnit != undefined && item.QtyUnit != ""){
+            await driver.findElement(By.xpath('//input[@ng-model="filterItemModel.qty "]')).sendKeys(item.QtyUnit)
+            }
+
+
+
+
 
         }
+
     }
     await AddItem();
 

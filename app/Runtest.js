@@ -45,7 +45,9 @@ async function run() {
             CountryOrigin: "", CountryDestination: "", Remark: ""   
             }
 
-            const addItem =[{SKU: "Mercedes-Benz A200"}];
+            const addItem =[{SKU: "Mercedes-Benz A200", Description: "", Status: "", ExchangeRatePrice: "50", Lot: "A1234", TariffCode: "2021010",
+            QtyUnit: "10"
+            }];
             await gr.CreateGR (driver, header, addItem); 
             //await gr.CreateGR (driver, header); 
         }); 
