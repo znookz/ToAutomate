@@ -253,10 +253,11 @@ async function scanLoadLastMile(driver, dtScan, dtSet) {
 
     //กด จบสแแกน
     await driver.wait(until.elementLocated(By.xpath(`//button[@ng-click="checkScan(2);"]`)), 10000).click();
+    await modulMain.waitloadend(driver, 2000);
     //ยืนยันบันทึก confirm
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Confirm"]/button[@ng-click="ok()"]`)), 10000).click();
     // เช็คว่า SUCCESS หรือไม่  และปิด alert
-    await modulMain.waitloadend(driver, 1000);
+    await modulMain.waitloadend(driver, 2000);
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 10000).click();
 }
 

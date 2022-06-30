@@ -25,8 +25,9 @@ async function confirmAndCloseAlertTM(driver, Tm_id) {
     await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//input[@placeholder="` + Tm_id + `"]`))), 5000).click();
     await driver.wait(until.elementIsVisible(driver.findElement(By.xpath(`//button[@ng-click="ConfirmStatusOnly();"]`))), 5000).click();
     //ยืนยันบันทึก confirm และปิด popup สำเร็จ
+    await modulMain.waitloadend(driver, 3000);
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Confirm"]/button[@ng-click="ok()"]`)), 10000).click();
-    await modulMain.waitloadend(driver, 2000);
+    await modulMain.waitloadend(driver, 3000);
     await driver.wait(until.elementLocated(By.xpath(`//div[@id="btn_Alert"]/button[@ng-click="ok()"]`)), 10000).click();
 }
 
