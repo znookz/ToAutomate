@@ -8,6 +8,7 @@
     "CreateC2C": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=Report,reportFilename=CreateC2C-Report 'app/Scripts/CreateC2C.js' ",
     "Scan3page": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=Report,reportFilename=Scan3page-Report 'app/Scripts/Scan3page.js' ",
     "TestCase150": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=Report,reportFilename=CreateC2C-Report 'app/Scripts/TestCase150.js' ",
+    "TestCase140": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=Report,reportFilename=CreateC2C-Report 'app/Scripts/TestCase140.js' ",
     "CreateDriver": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=Report,reportFilename=CreateDriver-Report 'app/Scripts/CreateDriver.js' ",
     "DeleteDriver": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register --reporter-options reportDir=Report,reportFilename=CreateDriver-Report 'app/Scripts/DeleteDriver.js' "
   },
