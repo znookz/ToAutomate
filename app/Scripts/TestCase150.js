@@ -60,8 +60,6 @@ async function run() {
         });
             //สแกนขึ้นรถ LastMile
         it('scanLoadLastMile', async function () {
-            await driver.get(dataConstant.webapi + "tms/tms.scanLoadLastMile")
-            await modulMain.waitloadend(driver, 2000);
             const dtSet = { tm: Tm_id }
             const dtScan = {}
             await moduleScan.scanLoadLastMile(driver, dtScan, dtSet);

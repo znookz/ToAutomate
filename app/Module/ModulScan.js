@@ -237,6 +237,7 @@ async function scanLoadLastMile(driver, dtScan, dtSet) {
     await driver.get(dataConstant.webapi + "tms/tms.scanLoadLastMile")
     await modulMain.waitloadend(driver, 2000);
     //กรอก TM
+    await modulMain.waitloadend(driver, 5000);
     await driver.findElement(By.xpath(`//input[@ng-model="item.TransportManifest_No"]`)).sendKeys(dtSet.tm, Key.ENTER);
     await modulMain.waitloadend(driver, 2000);
     //กด เริ่มสแแกน
