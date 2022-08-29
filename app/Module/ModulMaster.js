@@ -24,6 +24,10 @@ async function CreateDriver(driver,dtAddText) {
     await driver.findElement(By.xpath(`//input[@ng-model="item.Last_Name"]`)).sendKeys(dtAddText.lastname);
     //รหัสประจำตัวประชาชน
     await driver.findElement(By.xpath(`//input[@ng-model="item.IDCard_Number"]`)).sendKeys(dtAddText.idnumber);
+    //เลือก ศูนย์กระจาย
+    await driver.findElement(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Distribution"]/form/span`)).click();
+    await modulMain.waitloadend(driver, 500);
+    await driver.wait(until.elementLocated(By.xpath(`//pc-dropdown-api-search-v2[@datares="chooseDirective.Distribution"]/form/ul/li/a[contains(., "`+dtAddText.DistributionCenterName+`")]`)), 10000).click();
     //วัน เดือน ปีเกิด
     await driver.findElement(By.xpath(`//pc-date-picker-day[@ng-model="item.BirthDay_Date"]/div/input[@ng-model="DateShow"]`)).click();
     await modulMain.waitloadend(driver, 500);
@@ -45,7 +49,7 @@ async function CreateDriver(driver,dtAddText) {
     //มือถือ
     await driver.findElement(By.xpath(`//input[@ng-model="item.Mobile"]`)).sendKeys(dtAddText.tel);
     //อัพโหลดรูป
-    await driver.findElement(By.xpath(`//input[@id="TruckPicture"]`)).sendKeys("C:/Users/uSeR/Pictures/ดาวน์โหลด.jpg");
+    await driver.findElement(By.xpath(`//input[@id="TruckPicture"]`)).sendKeys("C:/Users/Giant/Pictures/ดาวน์โหลด.jpg");
     await modulMain.waitloadend(driver, 500);
 
     //กดบันทึก

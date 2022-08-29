@@ -21,7 +21,7 @@ async function run() {
         }
 
         it('DeleteDriver', async function() {
-            var i = 3 //เพิ่มจำนวนรอบ
+            var i = 1 //เพิ่มจำนวนรอบ
             for (let index = 0; index < i; index++) {
             await modulMaster.DeleteDriver(driver,dtAddText);
             }

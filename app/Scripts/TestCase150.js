@@ -42,7 +42,7 @@ async function run() {
 
             const dtAddJOb = [
                 { name: "บรูส แบรนเนอร์", tel: "0966654471", address: "550/12 รัสเวกัส ถนนโล่ง", province: "เชียงราย", district: "เชียงแสน", subDistrict: "ป่าสัก" },
-                { name: "โทนี่ สตาร์ค", tel: "0966654472", address: "550/13 รัสเวกัส ถนนติด", province: "เชียงราย", district: "เชียงของ", subDistrict: "ศรีดอนชัย" },
+                //{ name: "โทนี่ สตาร์ค", tel: "0966654472", address: "550/13 รัสเวกัส ถนนติด", province: "เชียงราย", district: "เชียงของ", subDistrict: "ศรีดอนชัย" },
             ];
 
             const dtAddParcel = [
