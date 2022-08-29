@@ -13,6 +13,7 @@ async function loginBrowser(driver) {
     //navigate to our browser
     await driver.get(dataConstant.urlLogin)
     //Login web
+    await waitloadend(driver, 2000);
     await driver.findElement(By.xpath('//input[@ng-model="loginData.User"]')).sendKeys("ADMIN");
     await driver.findElement(By.xpath('//input[@ng-model="loginData.Password"]')).sendKeys("ADMIN");
     await driver.findElement(By.xpath('//button[@ng-click="login(loginData.User,loginData.Password)"]')).sendKeys(Key.ENTER);
