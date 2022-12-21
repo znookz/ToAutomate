@@ -39,13 +39,13 @@ async function CreateGR (driver, header, addItem) {
     }
     //AutoComplete License Plate
     if(header.LicensePlate != undefined && header.LicensPlate != ""){
-        await driver.findElement(By.xpath('//div[@id="tab1"]/div/div/div/div/auto-comple[@ng-model="filterModel.licensePlate_Index"]/div/input')).sendKeys(header.LicensePlate)
-        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab1"]/div/div/div/div/auto-comple[@ng-model="filterModel.licensePlate_Index"]/div/ul/li`)), 10000).click();
+        await driver.findElement(By.xpath('//div[@id="tab1"]/div/div/div/div/div/auto-comple[@ng-model="filterModel.licensePlate_Index"]/div/input')).sendKeys(header.LicensePlate)
+        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab1"]/div/div/div/div/div/auto-comple[@ng-model="filterModel.licensePlate_Index"]/div/ul/li`)), 10000).click();
     }
     //AutoComplete Driver
     if(header.Driver != undefined && header.Driver != ""){
-        await driver.findElement(By.xpath('//div[@id="tab1"]/div/div/div/div/auto-comple[@ng-model="filterModel.driver_Index"]/div/input')).sendKeys(header.Driver)
-        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab1"]/div/div/div/div/auto-comple[@ng-model="filterModel.driver_Index"]/div/ul/li`)), 10000).click();
+        await driver.findElement(By.xpath('//div[@id="tab1"]/div/div/div/div/div/auto-comple[@ng-model="filterModel.driver_Index"]/div/input')).sendKeys(header.Driver)
+        await driver.wait(until.elementLocated(By.xpath(`//div[@id="tab1"]/div/div/div/div/div/auto-comple[@ng-model="filterModel.driver_Index"]/div/ul/li`)), 10000).click();
     }
 
     //Import Information Click
