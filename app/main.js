@@ -12,9 +12,9 @@ describe("Test Log In", function () {
         //open browser
         let driver = await new Builder().forBrowser("chrome").build();
 
-
+      
         //navigate to our browser
-        await driver.get("http://203.151.136.18/SahaTH_BD_WMS/#/login")
+        await driver.get("http://203.151.136.84/std_Wms/#/login")
     });
 });
 //         //add a todo
